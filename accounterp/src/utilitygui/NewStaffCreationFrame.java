@@ -3,7 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package accounterp;
+package utilitygui;
+
+
+import date.CurrentDate;
+import date.CurrentTime;
+import dbdriver.DBDriver;
+import dboperation.ManageProfileDBOperation;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -20,6 +26,8 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
+import validation.Validator;
+
 
 /**
  *
@@ -27,15 +35,18 @@ import javax.swing.border.LineBorder;
  */
 public class NewStaffCreationFrame extends javax.swing.JFrame {
 
-    
+     public String email="No Emailid";
+    /**
+     * Creates new form LoginFrame
+     */
     public NewStaffCreationFrame() {
 
-        super("NEW STAFF CREATION");
+        super("NEW STAFF CREATION Login By"+" "+LoginFrame.uname);
         initComponents();
 
         jPasswordField1.setText("");
         jPasswordField2.setText("");
-    
+      //  jDateChooser1.getJCalendar().setPreferredSize(new Dimension(390, 180));
         
 
     }
@@ -70,17 +81,6 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
         jLabel34 = new javax.swing.JLabel();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
-        jMenuItem2 = new javax.swing.JMenuItem();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu9 = new javax.swing.JMenu();
-        jMenuItem9 = new javax.swing.JMenuItem();
-        jMenuItem13 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
-        jMenuItem5 = new javax.swing.JMenuItem();
-        jMenuItem6 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
 
@@ -262,7 +262,7 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
 
         jLabel33.setText("[ dd/mm/yyyy]");
         jPanel1.add(jLabel33);
-        jLabel33.setBounds(80, 81, 100, 14);
+        jLabel33.setBounds(80, 81, 100, 16);
 
         jTextField5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField5.addFocusListener(new java.awt.event.FocusAdapter() {
@@ -286,7 +286,7 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
 
         jLabel34.setText("(Optional)");
         jPanel1.add(jLabel34);
-        jLabel34.setBounds(100, 172, 60, 14);
+        jLabel34.setBounds(100, 172, 60, 16);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(340, 40, 700, 430);
@@ -308,110 +308,7 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
                 jMenu8KeyPressed(evt);
             }
         });
-
-        jMenuItem2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addcompany.png"))); // NOI18N
-        jMenuItem2.setText("Add Home Company");
-        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem2ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem2);
-
-        jMenuItem3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/editcompany.png"))); // NOI18N
-        jMenuItem3.setText("Edit Home Company");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem3);
-
         jMenuBar2.add(jMenu8);
-
-        jMenu9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/staff.png"))); // NOI18N
-        jMenu9.setText("Staff");
-        jMenu9.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-
-        jMenuItem9.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/addcompany.png"))); // NOI18N
-        jMenuItem9.setText("New Staff");
-        jMenuItem9.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem9ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem9);
-
-        jMenuItem13.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/editcompany.png"))); // NOI18N
-        jMenuItem13.setText("Edit / Search Staff");
-        jMenuItem13.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem13ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem13);
-
-        jMenuItem4.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/staffreport1.png"))); // NOI18N
-        jMenuItem4.setText("Staff Report");
-        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem4ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem4);
-
-        jMenuItem5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/staffreport1.png"))); // NOI18N
-        jMenuItem5.setText("Staff Attendance");
-        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem5ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem5);
-
-        jMenuItem6.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/payment.png"))); // NOI18N
-        jMenuItem6.setText("Staff Payment Details");
-        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem6ActionPerformed(evt);
-            }
-        });
-        jMenu9.add(jMenuItem6);
-
-        jMenuBar2.add(jMenu9);
-
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/manageitem.png"))); // NOI18N
-        jMenu2.setText(" Report");
-        jMenu2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-
-        jMenuItem1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sale.png"))); // NOI18N
-        jMenuItem1.setText("View Sale Report");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
-
-        jMenuItem15.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/purchase.png"))); // NOI18N
-        jMenuItem15.setText("View Purchase Report");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem15);
-
-        jMenuBar2.add(jMenu2);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jMenu6.setText("Logout");
@@ -453,14 +350,148 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-       
+        String name = jTextField1.getText();
+        
+        String mob = jTextField2.getText();
+        String emailid = jTextField3.getText();
+        String uname = jTextField4.getText();
+        String pass = jPasswordField1.getText();
+        String cpass = jPasswordField2.getText();
+        
+   //     System.out.println("Date: "+d);
+        
+        if(emailid.length()==0)
+         {
+             emailid=email;
+         }
+        
+
+        if (name.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Name Cannot be Empty");
+
+        }
+      
+      
+        else if (mob.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Mobile Number Cannot be Empty");
+        } else if (mob.length() != 10) {
+            JOptionPane.showMessageDialog(null, "Mobile Number should be of 10 Digits");
+        } else if (Validator.isDigitMobileno(mob) == false) {
+            JOptionPane.showMessageDialog(null, "Mobile Number is not Valid Please Try Again");
+        }  else if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Email ID Cannot be Empty");
+
+        }  else if (!emailid.equals("No Emailid")&&!emailid.contains("@")) {
+            JOptionPane.showMessageDialog(null, "Email ID does not contains '@' Please try Again");
+
+        } else if (!emailid.equals("No Emailid")&&!emailid.contains(".")) {
+            JOptionPane.showMessageDialog(null, "Email ID does not contains '.' Please try Again");
+
+        } 
+        else if (uname.isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(null, "Username Cannot be Empty");
+
+        } 
+          else if(!isValidName(uname))
+        {
+                       JOptionPane.showMessageDialog(null, "Username contain  a character otherthan Alphanumeric \n Please Enter a valid Username");
+        }
+          else if(uname.length()>10)
+        {
+                       JOptionPane.showMessageDialog(null, "Username Length should be less than 10 Characters");
+        }
+          
+        else if (pass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Password Cannot be Empty");
+
+        } else if (cpass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Confirm Password Cannot be Empty");
+        } else if (!cpass.equals(pass)) {
+            JOptionPane.showMessageDialog(null, "Password and Confirm Password Doesn't Match, Please Try Again");
+        } 
+        else 
+        {
+           
+            String dob =jTextField5.getText() ;
+            String date = new CurrentDate().getDate();
+            String time = new CurrentTime().getTime();
+            String datetime = date + " " + time;
+           
+
+            ManageProfileDBOperation md = new ManageProfileDBOperation();
+            if (md.createNewStaff(name, dob, mob, emailid, uname, pass, datetime, LoginFrame.uname, LoginFrame.date))
+            {
+                JOptionPane.showMessageDialog(null, "New Staff Information Saved Successfully");
+                jTextField1.setText("");
+                jTextField5.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jPasswordField1.setText("");
+                jPasswordField2.setText("");
+                
+
+            } 
+            else 
+            {
+                JOptionPane.showMessageDialog(null, "Problem Occured in Database operation \n Please Try Again");
+            }
+
+//           System.out.println("Name "+name);
+//           System.out.println("DOB: "+dob);
+//           System.out.println("Mobile: "+mob);
+//           System.out.println("Email: "+email);
+//           System.out.println("Username: "+uname);
+//           System.out.println("Passoword: "+pass);
+//           System.out.println("Confirm Passoword: "+cpass);
+//           System.out.println("Date and Time: "+datetime);
+        }
+
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     
-   
+    public boolean isValidName(String name)
+    {
+        boolean flag=true;
+        
+        for (int i = 0; i < name.length(); i++)
+        {
+            char ch=name.charAt(i);
+            int x=(int)ch;
+            
+            if((x>=48 && x<=57) || (x>=65 && x<=90) || (x>=97 && x<=122))
+            {
+                flag=true;
+            }
+            else
+            {
+                flag=false;
+                break;
+            }
+        }
+        
+        
+        
+        return flag;
+    }
+
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-   
+      
+
+        {
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+
+        }
+
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
@@ -470,14 +501,142 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
      
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
         // TODO add your handling code here:
-   
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+               String name = jTextField1.getText();
+       
+        String mob = jTextField2.getText();
+        String emailid = jTextField3.getText();
+        String uname = jTextField4.getText();
+        String pass = jPasswordField1.getText();
+        String cpass = jPasswordField2.getText();
+        
+   //     System.out.println("Date: "+d);
+        
+        if(emailid.length()==0)
+         {
+             emailid=email;
+         }
+        
+
+        if (name.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null, "Name Cannot be Empty");
+
+        }
+      
+       else if (mob.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Mobile Number Cannot be Empty");
+        } else if (mob.length() != 10) {
+            JOptionPane.showMessageDialog(null, "Mobile Number should be of 10 Digits");
+        } else if (Validator.isDigitMobileno(mob) == false) {
+            JOptionPane.showMessageDialog(null, "Mobile Number is not Valid Please Try Again");
+        }  else if (email.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Email ID Cannot be Empty");
+
+        }  else if (!emailid.equals("No Emailid")&&!emailid.contains("@")) {
+            JOptionPane.showMessageDialog(null, "Email ID does not contains '@' Please try Again");
+
+        } else if (!emailid.equals("No Emailid")&&!emailid.contains(".")) {
+            JOptionPane.showMessageDialog(null, "Email ID does not contains '.' Please try Again");
+
+        } 
+        else if (uname.isEmpty()) 
+        {
+            JOptionPane.showMessageDialog(null, "Username Cannot be Empty");
+
+        } 
+          else if(!isValidName(uname))
+        {
+                       JOptionPane.showMessageDialog(null, "Username contain  a character otherthan Alphanumeric \n Please Enter a valid User name");
+        }
+          else if(uname.length()>10)
+        {
+                       JOptionPane.showMessageDialog(null, "Username Length should be less than 10 Characters");
+        }
+          
+        else if (pass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Password Cannot be Empty");
+
+        } else if (cpass.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Confirm Password Cannot be Empty");
+        } else if (!cpass.equals(pass)) {
+            JOptionPane.showMessageDialog(null, "Password and Confirm Password Doesn't Match Please Try Again");
+        } 
+        else 
+        {
+           
+            String dob = jTextField5.getText();
+            String date = new CurrentDate().getDate();
+            String time = new CurrentTime().getTime();
+            String datetime = date + " " + time;
+           
+
+            ManageProfileDBOperation md = new ManageProfileDBOperation();
+            if (md.createNewStaff(name, dob, mob, emailid, uname, pass, datetime, LoginFrame.uname, LoginFrame.date))
+            {
+                JOptionPane.showMessageDialog(null, "New Staff Information Saved Successfully");
+                jTextField1.setText("");
+                jTextField5.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+                jPasswordField1.setText("");
+                jPasswordField2.setText("");
+                
+
+            } 
+            else 
+            {
+                JOptionPane.showMessageDialog(null, "Problem Occured in Database operation \n Please Try Again");
+            }
+
+//           System.out.println("Name "+name);
+//           System.out.println("DOB: "+dob);
+//           System.out.println("Mobile: "+mob);
+//           System.out.println("Email: "+email);
+//           System.out.println("Username: "+uname);
+//           System.out.println("Passoword: "+pass);
+//           System.out.println("Confirm Passoword: "+cpass);
+//           System.out.println("Date and Time: "+datetime);
+        }
+
+
+        }
 
     }//GEN-LAST:event_jButton1KeyPressed
 
     private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
         // TODO add your handling code here:
-        
-           
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            
+ if(LoginFrame.user.equals("Staff"))
+        {
+
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+            af.jLabel3.setEnabled(false);
+            af.jLabel4.setEnabled(false);
+            af.jLabel5.setEnabled(false);
+            af.jLabel6.setEnabled(false);
+            af.jLabel7.setEnabled(false);
+            af.jLabel8.setEnabled(false);
+
+        }
+        else
+        {
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+
+        }
+        }
     }//GEN-LAST:event_jButton4KeyPressed
 
     private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
@@ -556,12 +715,108 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
 
     private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
         // TODO add your handling code here:
-                 
+         String str=jTextField5.getText();
+        if(str.contains(".") || str.contains("-"))
+        {
+            str=str.replace(".", "/");
+            str=str.replace("-", "/");
+            
+        }
+        
+        jTextField5.setText(str);
+        
     }//GEN-LAST:event_jTextField5KeyReleased
-   
+   public String isValidDate(String str)
+     {
+         String result="";
+         try
+         {
+             int x=Integer.parseInt(str);
+             if(x>31)
+             {
+                 result="Invalid Date \n Please Re enter ";
+             }
+         }
+         catch(Exception ex)
+         {
+             result="Date is not a Number";
+             System.out.println("Exception ex "+ex);
+         }
+            return result;
+     }
+     
+      public String isValidMonth(String str)
+     {
+         String result="";
+         try
+         {
+             int x=Integer.parseInt(str);
+             if(x>12)
+             {
+                 result="Invalid Month \n Please Re enter ";
+             }
+         }
+         catch(Exception ex)
+         {
+             result="Month is not a Number";
+             System.out.println("Exception ex "+ex);
+         }
+         
+         return result;
+     }
+      
+       public String isValidYear(String str)
+     {
+         String result="";
+         try
+         {
+             int x=Integer.parseInt(str);
+//             if(x>12)
+//             {
+//                 result="Invalid Month \n Please Re enter ";
+//             }
+         }
+         catch(Exception ex)
+         {
+             result="Year is not a Number";
+             System.out.println("Exception ex "+ex);
+         }
+         
+         return result;
+     }
     private void jTextField5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyPressed
         // TODO add your handling code here:
-            
+         if(evt.getKeyCode()==com.sun.glass.events.KeyEvent.VK_TAB)
+        { 
+            String str=jTextField5.getText();
+            if(!str.isEmpty())
+            {
+            String st[]=str.split("/");
+        if(st.length==3)
+        {
+            String st1=st[0];
+            String st2=st[1];
+            String st3=st[2];
+            String result1=isValidDate(st1);
+            String result2=isValidMonth(st2);
+            String result3=isValidYear(st3);
+             if(!result1.isEmpty())
+             JOptionPane.showMessageDialog(null,result1);
+             
+           
+             if(!result2.isEmpty())
+             JOptionPane.showMessageDialog(null,result2);
+                if(!result3.isEmpty())
+             JOptionPane.showMessageDialog(null,result3);
+        }
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Date can not be Empty");
+            }
+            jTextField5.setFocusTraversalKeysEnabled(true);
+       }
+        
     }//GEN-LAST:event_jTextField5KeyPressed
 
     private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusLost
@@ -569,106 +824,48 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
         jTextField5.setBorder(new EtchedBorder());
     }//GEN-LAST:event_jTextField5FocusLost
 
-    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        AddHomeCompanyProfileFrame af = new AddHomeCompanyProfileFrame();
-        af.setVisible(true);
-        af.setSize(d);
-    }//GEN-LAST:event_jMenuItem2ActionPerformed
-
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        EditHomeCompanyProfileFrame af = new EditHomeCompanyProfileFrame();
-        af.setVisible(true);
-        af.setSize(d);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
-
     private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
         // TODO add your handling code here:
+        if(LoginFrame.user.equals("Staff"))
+        {
 
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+            af.jLabel3.setEnabled(false);
+            af.jLabel4.setEnabled(false);
+            af.jLabel5.setEnabled(false);
+            af.jLabel6.setEnabled(false);
+            af.jLabel7.setEnabled(false);
+            af.jLabel8.setEnabled(false);
+
+        }
+        else
+        {
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+
+        }
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void jMenu8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMenu8KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu8KeyPressed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        NewStaffCreationFrame nf=new NewStaffCreationFrame();
-        nf.setVisible(true);
-        nf.setSize(d);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
-
-    private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        ViewAllStaffFrame vf=new ViewAllStaffFrame();
-        vf.setVisible(true);
-        vf.setSize(d);
-    }//GEN-LAST:event_jMenuItem13ActionPerformed
-
-    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        StaffReportFrame vf=new StaffReportFrame();
-        vf.setVisible(true);
-        vf.setSize(d);
-    }//GEN-LAST:event_jMenuItem4ActionPerformed
-
-    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        StaffAttendanceFrame vf=new StaffAttendanceFrame();
-        vf.setVisible(true);
-        vf.setSize(d);
-    }//GEN-LAST:event_jMenuItem5ActionPerformed
-
-    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        StaffPaymentDetailsFrame vf=new StaffPaymentDetailsFrame();
-        vf.setVisible(true);
-        vf.setSize(d);
-    }//GEN-LAST:event_jMenuItem6ActionPerformed
-
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        ViewSaleReportFrame lf=new ViewSaleReportFrame();
-        lf.setVisible(true);
-        lf.setSize(d);
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        ViewPurchaseReportFrame lf=new ViewPurchaseReportFrame();
-        lf.setVisible(true);
-        lf.setSize(d);
-
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
-
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        LoginFrame af = new LoginFrame();
-        af.setVisible(true);
-        af.setSize(d);
 
+        this.dispose();
+        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+
+        LoginFrame lf=new LoginFrame();
+        lf.setVisible(true);
+        lf.setSize(d);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
@@ -725,21 +922,10 @@ public class NewStaffCreationFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
-    private javax.swing.JMenu jMenu9;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem13;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem2;
-    private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JMenuItem jMenuItem4;
-    private javax.swing.JMenuItem jMenuItem5;
-    private javax.swing.JMenuItem jMenuItem6;
-    private javax.swing.JMenuItem jMenuItem9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JPasswordField jPasswordField2;
