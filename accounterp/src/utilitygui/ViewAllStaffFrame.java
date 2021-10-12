@@ -3,8 +3,17 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package accounterp;
+package utilitygui;
 
+//import static healthprediction.LoginFrame.userid;
+
+
+
+import TableOperation.InsertDataToTable;
+import TableOperation.InsertEditButtonDataToTable;
+import TableOperation.InsertEditButtonDataToTable;
+
+import dboperation.ManageProfileDBOperation;
 import java.awt.Button;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -30,7 +39,7 @@ import javax.swing.table.TableModel;
  *
  * @author welcome
  */
-public class ViewHomeCompanyFrame extends javax.swing.JFrame {
+public class ViewAllStaffFrame extends javax.swing.JFrame {
    // private Button button;
     
  
@@ -38,10 +47,73 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
     /**
      * Creates new form ViewUploadFileFrame
      */
-    public ViewHomeCompanyFrame() {
+    public ViewAllStaffFrame() {
         
-        super ("VIEW HOME COMPANY");
+        super ("VIEW ALL STAFF DETAILS Login By"+" "+LoginFrame.uname);
         initComponents();
+
+       
+       ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
+           .setHorizontalAlignment((int) TOP_ALIGNMENT);
+       
+       TableColumnModel columnModel = jTable1.getColumnModel();
+       
+       
+       columnModel.getColumn(0).setPreferredWidth(100);
+       columnModel.getColumn(1).setPreferredWidth(100);
+       columnModel.getColumn(2).setPreferredWidth(100);
+       columnModel.getColumn(3).setPreferredWidth(150);
+       columnModel.getColumn(6).setPreferredWidth(200);
+      // columnModel.getColumn(7).setPreferredWidth(200);
+       
+       
+      
+        
+        
+         jTable1.setRowHeight(35);
+        
+   
+             int rowheight=35;
+             ArrayList staffinfo=new ManageProfileDBOperation().getAllStaffInfo();
+             
+             //int rows = jTable1.getRowCount();
+           //  int columns= jTable1.getColumnCount();
+            // System.out.println("Rows  "+rows);
+            // System.out.println("columns  "+columns);
+             
+            if(staffinfo.size()<=5)
+             {
+                 for (int i = 0; i < staffinfo.size(); i++) 
+                 {
+
+                     ArrayList temp = (ArrayList) staffinfo.get(i);
+
+                     for (int j = 0; j < temp.size(); j++) 
+                     {
+                         String str = (String) temp.get(j);
+
+                         jTable1.setValueAt(str, i, j);
+                     }
+
+                 }
+             }
+            else
+            {
+                
+                InsertDataToTable it = new InsertDataToTable();
+                it.getDataInserted(jTable1, jTable1.getColumnCount(), staffinfo, rowheight);
+                
+            }
+
+
+            
+           
+                        
+          
+//         }
+        
+        
+       
          
     }
     
@@ -63,10 +135,6 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
         jMenu8 = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem15 = new javax.swing.JMenuItem();
         jMenu6 = new javax.swing.JMenu();
         jMenuItem12 = new javax.swing.JMenuItem();
 
@@ -172,44 +240,7 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
                 jMenu8KeyPressed(evt);
             }
         });
-
-        jMenuItem3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/search.png"))); // NOI18N
-        jMenuItem3.setText("View Home Company");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        jMenu8.add(jMenuItem3);
-
         jMenuBar2.add(jMenu8);
-
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/manageitem.png"))); // NOI18N
-        jMenu2.setText(" Report");
-        jMenu2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
-
-        jMenuItem1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/sale.png"))); // NOI18N
-        jMenuItem1.setText("View Sale Report");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem1);
-
-        jMenuItem15.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jMenuItem15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/purchase.png"))); // NOI18N
-        jMenuItem15.setText("View Purchase Report");
-        jMenuItem15.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem15ActionPerformed(evt);
-            }
-        });
-        jMenu2.add(jMenuItem15);
-
-        jMenuBar2.add(jMenu2);
 
         jMenu6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/logout.png"))); // NOI18N
         jMenu6.setText("Logout");
@@ -234,84 +265,178 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-                
+        javax.swing.ToolTipManager.sharedInstance().setInitialDelay(1);
+       // javax.swing.ToolTipManager.sharedInstance().setDismissDelay(1);
+        
+        String str=(String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+       // System.out.println("Tool Tip Text is "+str);
+        jTable1.setToolTipText(str);
+      
+        
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
         
+        if(evt.getKeyCode()==KeyEvent.VK_TAB)
+        {
+            int row=jTable1.getRowCount();
+            int col=jTable1.getColumnCount();
+            
+            if (evt.getModifiers() > 0) 
+            {
+                        jTable1.transferFocusBackward();
+                    } else {
+                        jTable1.transferFocus();
+                    }
+                    evt.consume();
+        }
        
     }//GEN-LAST:event_jTable1KeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-       
+        int row = jTable1.getSelectedRow();
+        //  System.out.println("row: "+index1);
+
+        if(row==-1)
+        {
+            JOptionPane.showMessageDialog(null, "Please Select a Row");
+        }
+        else if(row!=-1)
+        {
+
+            String username = (String) jTable1.getValueAt(row, 4);
+            EditStaffFrame.uname = username;
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            EditStaffFrame sf = new EditStaffFrame();
+            sf.setVisible(true);
+            sf.setSize(d);
+
+        
+
+        }
 
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
         // TODO add your handling code here:
 
-       
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+            int row = jTable1.getSelectedRow();
+        //  System.out.println("row: "+index1);
+
+        if(row==-1)
+        {
+            JOptionPane.showMessageDialog(null, "Please Select The Row");
+        }
+        else if(row!=-1)
+        {
+
+            String sname = (String) jTable1.getValueAt(row, 0);
+            EditStaffFrame.uname = sname;
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            EditStaffFrame sf = new EditStaffFrame();
+            sf.setVisible(true);
+            sf.setSize(d);
+
+        
+
+        }
+        }
     }//GEN-LAST:event_jButton2KeyPressed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
 
+             {
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton4KeyPressed
         // TODO add your handling code here:
-        
-           
-    }//GEN-LAST:event_jButton4KeyPressed
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
 
-    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        ViewHomeCompanyFrame af = new ViewHomeCompanyFrame();
-        af.setVisible(true);
-        af.setSize(d);
-    }//GEN-LAST:event_jMenuItem3ActionPerformed
+            if(LoginFrame.user.equals("Staff"))
+            {
+
+                this.dispose();
+                Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af = new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+                af.jLabel3.setEnabled(false);
+                af.jLabel4.setEnabled(false);
+                af.jLabel5.setEnabled(false);
+                af.jLabel6.setEnabled(false);
+                af.jLabel7.setEnabled(false);
+                af.jLabel8.setEnabled(false);
+
+            }
+            else
+            {
+                this.dispose();
+                Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af = new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+
+            }
+        }
+    }//GEN-LAST:event_jButton4KeyPressed
 
     private void jMenu8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu8MouseClicked
         // TODO add your handling code here:
+        if(LoginFrame.user.equals("Staff"))
+        {
 
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+            af.jLabel3.setEnabled(false);
+            af.jLabel4.setEnabled(false);
+            af.jLabel5.setEnabled(false);
+            af.jLabel6.setEnabled(false);
+            af.jLabel7.setEnabled(false);
+            af.jLabel8.setEnabled(false);
+
+        }
+        else
+        {
+            this.dispose();
+            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+            ManagerOperationFrame af = new ManagerOperationFrame();
+            af.setVisible(true);
+            af.setSize(d);
+
+        }
     }//GEN-LAST:event_jMenu8MouseClicked
 
     private void jMenu8KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jMenu8KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_jMenu8KeyPressed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        ViewSaleReportFrame lf=new ViewSaleReportFrame();
-        lf.setVisible(true);
-        lf.setSize(d);
-
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
-
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        ViewPurchaseReportFrame lf=new ViewPurchaseReportFrame();
-        lf.setVisible(true);
-        lf.setSize(d);
-
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
-
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
-        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-        LoginFrame af = new LoginFrame();
-        af.setVisible(true);
-        af.setSize(d);
 
+        this.dispose();
+        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+
+        LoginFrame lf=new LoginFrame();
+        lf.setVisible(true);
+        lf.setSize(d);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
@@ -331,30 +456,14 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ViewHomeCompanyFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewAllStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ViewHomeCompanyFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewAllStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ViewHomeCompanyFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewAllStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ViewHomeCompanyFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ViewAllStaffFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -375,7 +484,7 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ViewHomeCompanyFrame().setVisible(true);
+                new ViewAllStaffFrame().setVisible(true);
             }
         });
     }
@@ -383,14 +492,10 @@ public class ViewHomeCompanyFrame extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu6;
     private javax.swing.JMenu jMenu8;
     private javax.swing.JMenuBar jMenuBar2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem12;
-    private javax.swing.JMenuItem jMenuItem15;
-    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables

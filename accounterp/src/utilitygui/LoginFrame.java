@@ -4,10 +4,13 @@
  * and open the template in the editor.
  */
 
-package accounterp;
+package utilitygui;
 
 
 import com.sun.glass.events.KeyEvent;
+import date.CurrentDate;
+import date.CurrentTime;
+import dboperation.LoginDBOperation;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
@@ -24,11 +27,16 @@ import javax.swing.text.Highlighter;
  * @author 1450
  */
 public class LoginFrame extends javax.swing.JFrame {
-      
-     
+      public static String uname="";
+      public static String user="";
+      public static String date=new CurrentDate().getDate();
+      public int count=0;
+    /**
+     * Creates new form Login
+     */
     public LoginFrame() {
         
-        super("LOGIN");
+        super("ERP SYSTEM");
         initComponents();
        //  setBackground(new Color(0,0,0,0));
         
@@ -59,6 +67,7 @@ public class LoginFrame extends javax.swing.JFrame {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -70,14 +79,13 @@ public class LoginFrame extends javax.swing.JFrame {
         jRadioButton2 = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
         jPasswordField1 = new javax.swing.JPasswordField();
+        jLabel4 = new javax.swing.JLabel();
         jRadioButton3 = new javax.swing.JRadioButton();
         jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-        getContentPane().setLayout(null);
+        getContentPane().setLayout(new java.awt.GridBagLayout());
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -94,7 +102,7 @@ public class LoginFrame extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Calibri", 0, 18)); // NOI18N
         jLabel2.setText("Password:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(22, 119, 75, 23);
+        jLabel2.setBounds(27, 119, 75, 23);
 
         jButton1.setBackground(new java.awt.Color(0, 51, 102));
         jButton1.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -113,7 +121,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(120, 185, 95, 35);
+        jButton1.setBounds(100, 185, 90, 35);
 
         jButton2.setBackground(new java.awt.Color(0, 51, 102));
         jButton2.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -131,7 +139,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(220, 185, 95, 35);
+        jButton2.setBounds(200, 185, 90, 35);
 
         jButton3.setBackground(new java.awt.Color(0, 51, 102));
         jButton3.setFont(new java.awt.Font("Calibri", 1, 14)); // NOI18N
@@ -149,9 +157,8 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(320, 185, 95, 35);
+        jButton3.setBounds(300, 185, 90, 35);
 
-        jRadioButton1.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jRadioButton1.setText("Manager");
         jRadioButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -170,9 +177,8 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jRadioButton1);
-        jRadioButton1.setBounds(200, 85, 77, 25);
+        jRadioButton1.setBounds(120, 85, 90, 25);
 
-        jRadioButton2.setBackground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jRadioButton2.setText("Staff");
         jRadioButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -191,7 +197,7 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jRadioButton2);
-        jRadioButton2.setBounds(310, 85, 51, 25);
+        jRadioButton2.setBounds(330, 80, 55, 25);
 
         jTextField1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTextField1.setInheritsPopupMenu(true);
@@ -253,7 +259,16 @@ public class LoginFrame extends javax.swing.JFrame {
         jPanel1.add(jPasswordField1);
         jPasswordField1.setBounds(120, 122, 283, 25);
 
-        jRadioButton3.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
+        jLabel4.setText("Manager or CEO Forgot Password ?");
+        jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel4MouseClicked(evt);
+            }
+        });
+        jPanel1.add(jLabel4);
+        jLabel4.setBounds(120, 160, 240, 16);
+
         jRadioButton3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
         jRadioButton3.setText("CEO");
         jRadioButton3.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -272,20 +287,26 @@ public class LoginFrame extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jRadioButton3);
-        jRadioButton3.setBounds(120, 85, 49, 25);
+        jRadioButton3.setBounds(240, 85, 55, 20);
 
-        getContentPane().add(jPanel1);
-        jPanel1.setBounds(450, 160, 470, 260);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.ipadx = 469;
+        gridBagConstraints.ipady = 259;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(160, 450, 0, 418);
+        getContentPane().add(jPanel1, gridBagConstraints);
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel3.setText("\"Application best viewed at 1366x768 resolution\"");
-        getContentPane().add(jLabel3);
-        jLabel3.setBounds(540, 650, 290, 14);
-
-        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/image1.jpg"))); // NOI18N
-        jLabel4.setText("jLabel4");
-        getContentPane().add(jLabel4);
-        jLabel4.setBounds(0, 0, 1500, 780);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.ipadx = 35;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        gridBagConstraints.insets = new java.awt.Insets(210, 550, 53, 0);
+        getContentPane().add(jLabel3, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -293,112 +314,295 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
-         String user="";
-         
-         if(jRadioButton1.isSelected())
+        uname=jTextField1.getText().trim();
+        System.out.println("uname length "+uname.length());
+        String pass=jPasswordField1.getText().trim();
+     
+        
+        if(jRadioButton1.isSelected())
         {
             user= jRadioButton1.getText();
         }
-         else  if(jRadioButton2.isSelected())
+        else  if(jRadioButton2.isSelected())
         {
             user= jRadioButton2.getText();
         }
-        else  if(jRadioButton3.isSelected())
+
+        if(uname.isEmpty())
         {
-            user= jRadioButton3.getText();
-        } 
-         
-         if(user.equals("Manager"))
-         {
-             this.dispose();
-             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-             ManagerOperationFrame af = new ManagerOperationFrame();
-             af.setVisible(true);
-             af.setSize(d);
-         }
-         else if(user.equals("Staff"))
-         {
-             this.dispose();
-             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-             StaffOperationFrame af = new StaffOperationFrame();
-             af.setVisible(true);
-             af.setSize(d);
-         }
-         else if(user.equals("CEO"))
-         {
-             this.dispose();
-             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-             CEOOperationFrame af = new CEOOperationFrame();
-             af.setVisible(true);
-             af.setSize(d);
-         }
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
+        else if(user.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select the User");
+        }
+
+        else if(pass.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Password Cannot be Empty");
+        }
+
+        else if(user.equals("Manager"))
+        {
+            LoginDBOperation lc=new LoginDBOperation();
+
+            if(lc.checkAdminLogin(uname,pass))
+            {
+                this.dispose();
+                Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af=new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+               count=0;
+                
+           }
+            else
+            {
+                if(count<3)
+                {
+                      count++;
+                      System.out.println("Count is "+count);
+                      JOptionPane.showMessageDialog(null,"Username and Password Doesn't Match Please Try Again");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Please contact the Helpcare Center to Retrieve Your password Back \n Thank you");
+                }
+                
+            }
+          
+        }
+
+        else if(user.equals("Staff"))
+        {
+             LoginDBOperation lc=new LoginDBOperation();
+
+            if(lc.checkStaffLogin(uname,pass))
+            {
+                this.dispose();
+                Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af=new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+                
+                
+                af.jLabel3.setEnabled(false);
+                af.jLabel4.setEnabled(false);
+                af.jLabel5.setEnabled(false);
+                af.jLabel6.setEnabled(false);
+                af.jLabel7.setEnabled(false);
+                af.jLabel8.setEnabled(false);
+                
+
+        }
+            
+            else
+            {
+                 JOptionPane.showMessageDialog(null,"Username and Password Doesn't Match Please Try Again");
+            }
+
+           
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
         // TODO add your handling code here:
         
-      
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        uname=jTextField1.getText().trim();
+        String pass=jPasswordField1.getText().trim();
+        
+
+        if(jRadioButton1.isSelected())
+        {
+            user= jRadioButton1.getText();
+        }
+        else  if(jRadioButton2.isSelected())
+        {
+            user= jRadioButton2.getText();
+        }
+
+        if(uname.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
+        else if(user.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select the User");
+        }
+
+        else if(pass.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Password Cannot be Empty");
+        }
+
+        else if(user.equals("Admin"))
+        {
+            LoginDBOperation lc=new LoginDBOperation();
+
+            if(lc.checkAdminLogin(uname,pass))
+            {
+                this.dispose();
+                Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af=new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+                System.out.println("admin admin"); 
+                count=0;
+            }
+            else  if(count<3)
+                {
+                      count++;
+                      System.out.println("Count is "+count);
+                      JOptionPane.showMessageDialog(null,"Username and Password Doesn't Match Please Try Again");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Please contact the Helpcare Center to Retrieve Your password Back \n Thank you");
+                }
+        }
+
+        else if(user.equals("Staff"))
+        {
+             LoginDBOperation lc=new LoginDBOperation();
+
+            if(lc.checkStaffLogin(uname,pass))
+            {
+                this.dispose();
+                Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af=new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+                
+                af.jLabel3.setEnabled(false);
+                af.jLabel4.setEnabled(false);
+                af.jLabel5.setEnabled(false);
+                af.jLabel6.setEnabled(false);
+                af.jLabel7.setEnabled(false);
+                af.jLabel8.setEnabled(false);
+                
+
+        }
+            else
+            {
+                JOptionPane.showMessageDialog(null,"Username and Password Doesn't Match Please Try Again");
+            }
+
+            
+        }
+        }
 
     }//GEN-LAST:event_jButton1KeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
 
-       
+        
+        jTextField1.setText("");
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jPasswordField1.setText("");
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
         // TODO add your handling code here:
-      
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        jTextField1.setText("");
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(false);
+        jPasswordField1.setText("");
+        }
     }//GEN-LAST:event_jButton2KeyPressed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         
-      System.exit(0);
-        
+      
+        System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton3KeyPressed
         // TODO add your handling code here:
-       
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        System.exit(0);
+        }
     }//GEN-LAST:event_jButton3KeyPressed
 
     private void jRadioButton1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton1MouseClicked
         // TODO add your handling code here:
-      
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+        if(jTextField1.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
     }//GEN-LAST:event_jRadioButton1MouseClicked
 
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
+
         jRadioButton1.setSelected(true);
         jRadioButton2.setSelected(false);
         jRadioButton3.setSelected(false);
-       
+        
     }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     private void jRadioButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButton1KeyPressed
         // TODO add your handling code here:
 
-       
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+        if(jTextField1.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
+        }
     }//GEN-LAST:event_jRadioButton1KeyPressed
 
     private void jRadioButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton2MouseClicked
         // TODO add your handling code here:
-       
+        jRadioButton1.setSelected(true);
+        jRadioButton2.setSelected(false);
+        if(jTextField1.getText().isEmpty())
+        {
+
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
     }//GEN-LAST:event_jRadioButton2MouseClicked
 
     private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
         // TODO add your handling code here:
         jRadioButton1.setSelected(false);
         jRadioButton2.setSelected(true);
+
         jRadioButton3.setSelected(false);
     }//GEN-LAST:event_jRadioButton2ActionPerformed
 
     private void jRadioButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jRadioButton2KeyPressed
         // TODO add your handling code here:
 
-       
+        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        jRadioButton1.setSelected(false);
+        jRadioButton2.setSelected(true);
+        if(jTextField1.getText().isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
+        }
     }//GEN-LAST:event_jRadioButton2KeyPressed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
@@ -413,7 +617,23 @@ public class LoginFrame extends javax.swing.JFrame {
 
     private void jPasswordField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPasswordField1MouseClicked
         // TODO add your handling code here:
-        
+        String user="";
+
+        if(jRadioButton1.isSelected())
+        {
+            user= jRadioButton1.getText();
+        }
+        else  if(jRadioButton2.isSelected())
+        {
+            user= jRadioButton2.getText();
+        }
+
+        if(user.isEmpty())
+        {
+
+            JOptionPane.showMessageDialog(null,"User Cannot be Empty");
+
+        }
     }//GEN-LAST:event_jPasswordField1MouseClicked
 
     private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
@@ -424,7 +644,90 @@ public class LoginFrame extends javax.swing.JFrame {
     private void jPasswordField1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPasswordField1KeyPressed
         // TODO add your handling code here:
 
-      
+      if(evt.getKeyCode()==KeyEvent.VK_ENTER)
+        {
+        uname=jTextField1.getText().trim();
+        String pass=jPasswordField1.getText().trim();
+        
+
+        if(jRadioButton1.isSelected())
+        {
+            user= jRadioButton1.getText();
+        }
+        else  if(jRadioButton2.isSelected())
+        {
+            user= jRadioButton2.getText();
+        }
+
+        if(uname.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Username Cannot be Empty");
+
+        }
+        else if(user.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Select the User");
+        }
+
+        else if(pass.isEmpty())
+        {
+            JOptionPane.showMessageDialog(null,"Password Cannot be Empty");
+        }
+
+        else if(user.equals("Admin"))
+        {
+            LoginDBOperation lc=new LoginDBOperation();
+
+            if(lc.checkAdminLogin(uname,pass))
+            {
+                this.dispose();
+                Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af=new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+                count=0;
+              System.out.println("admin admin"); 
+                
+
+            }
+            else if(count<3)
+                {
+                    count++;
+                    System.out.println("Count is "+count);
+                    JOptionPane.showMessageDialog(null,"Username and Password Doesn't Match Please Try Again");
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null,"Please contact the Helpcare Center to Retrieve Your password Back \n Thank you");
+                }
+        }
+
+        else if(user.equals("Staff"))
+        {
+             LoginDBOperation lc=new LoginDBOperation();
+
+            if(lc.checkStaffLogin(uname,pass))
+            {
+                this.dispose();
+                Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+                ManagerOperationFrame af=new ManagerOperationFrame();
+                af.setVisible(true);
+                af.setSize(d);
+                
+                af.jLabel3.setEnabled(false);
+                af.jLabel4.setEnabled(false);
+                af.jLabel5.setEnabled(false);
+                af.jLabel6.setEnabled(false);
+                af.jLabel7.setEnabled(false);
+                af.jLabel8.setEnabled(false);
+                
+
+        }
+            else
+
+            JOptionPane.showMessageDialog(null,"Username and Password Doesn't Match Please Try Again");
+        }
+        }
     }//GEN-LAST:event_jPasswordField1KeyPressed
 
     private void jPanel1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jPanel1KeyPressed
@@ -468,14 +771,21 @@ public class LoginFrame extends javax.swing.JFrame {
        
     }//GEN-LAST:event_jPasswordField1KeyReleased
 
+    private void jLabel4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel4MouseClicked
+        // TODO add your handling code here:
+        
+          JOptionPane.showMessageDialog(null,"Please contact us from your registered email ID \n Thank you");
+    }//GEN-LAST:event_jLabel4MouseClicked
+
     private void jRadioButton3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadioButton3MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton3MouseClicked
 
     private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
         // TODO add your handling code here:
-        jRadioButton1.setSelected(false);
+          jRadioButton1.setSelected(false);
         jRadioButton2.setSelected(false);
+
         jRadioButton3.setSelected(true);
     }//GEN-LAST:event_jRadioButton3ActionPerformed
 
