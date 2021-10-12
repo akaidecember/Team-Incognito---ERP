@@ -24,15 +24,15 @@ public class Main {
     for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
         if ("Nimbus".equals(info.getName())) {
             UIManager.setLookAndFeel(info.getClassName());
-              
+
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             LoginFrame l = new LoginFrame();
             l.setSize(d);
             l.revalidate();
             l.setVisible(true);
-                    
+
         }
-       
+
     }
 } catch (Exception e) {
     // If Nimbus is not available, fall back to cross-platform
@@ -41,8 +41,10 @@ public class Main {
     } catch (Exception ex) {
         // not worth my time
     }
-    
+
 }
-           
+
     }
 }
+
+// TEMP change
