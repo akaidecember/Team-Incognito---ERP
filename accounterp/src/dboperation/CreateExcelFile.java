@@ -30,7 +30,7 @@ import jxl.write.WriteException;
 public class CreateExcelFile {
    
     
-    public void getExcelFile(ArrayList data, String path) throws IOException, WriteException
+    public void getExcelFile(ArrayList data, String path) throws IOException, WriteException 
     {
         
         
@@ -61,6 +61,7 @@ public class CreateExcelFile {
         {
             
             lable = new Label(j, i, temp.get(j).toString(), cellFormat);
+             
             sheet.addCell(lable);
             
         }
