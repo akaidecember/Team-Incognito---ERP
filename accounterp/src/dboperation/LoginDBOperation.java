@@ -19,7 +19,7 @@ import java.sql.Statement;
  */
 public class LoginDBOperation {
     
-    public boolean checkAdminLogin(String uname, String pass)
+    public boolean checkManagerLogin(String uname, String pass)
     {
         boolean flag=true;
 
@@ -27,7 +27,7 @@ public class LoginDBOperation {
         {
 
              Statement st= new DBDriver().getStatment();
-             String query="Select * from admininfo where Username='"+uname+"'and Password='"+pass+"'";
+             String query="Select * from managerinfo where Username='"+uname+"'and Password='"+pass+"'";
              ResultSet rs=st.executeQuery(query);
             
             if(rs.next())
@@ -45,7 +45,43 @@ public class LoginDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in LoginDBOperation Class in checkAdminLogin method() is: "+e);
+            System.out.println("Exception in LoginDBOperation Class in checkManagerLogin method() is: "+e);
+            flag=false;
+        }
+
+
+
+
+        return flag;
+    }
+    
+    public boolean checkCEOLogin(String uname, String pass)
+    {
+        boolean flag=true;
+
+        try
+        {
+
+             Statement st= new DBDriver().getStatment();
+             String query="Select * from ceoinfo where Username='"+uname+"'and Password='"+pass+"'";
+             ResultSet rs=st.executeQuery(query);
+            
+            if(rs.next())
+            {
+             flag=true;   
+            }
+            
+            else
+            {
+                flag=false;
+            }
+          
+            st.close();
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Exception in LoginDBOperation Class in checkCEOLogin method() is: "+e);
             flag=false;
         }
 
@@ -81,7 +117,7 @@ public class LoginDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in LoginDBOperation Class in checkStaffLogin method() is: "+e);
+            System.out.println("Exception in LoginDBOperation Class in checkStaffLogin method() is: "+e);
             flag=false;
         }
 

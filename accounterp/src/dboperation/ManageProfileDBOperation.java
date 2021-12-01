@@ -30,7 +30,7 @@ public class ManageProfileDBOperation {
 
             Statement st= new DBDriver().getStatment();
 
-            String query="Select * from admininfo where password='"+pass+"'";
+            String query="Select * from managerinfo where password='"+pass+"'";
 
             ResultSet rs=st.executeQuery(query);
             
@@ -71,7 +71,7 @@ public class ManageProfileDBOperation {
 
             
              Statement st= new DBDriver().getStatment();
-             String query="Update admininfo set Password='"+pass+"',Login_By='"+loginby+"',Login_Date='"+logindate+"' where Username='"+uname+"'";
+             String query="Update managerinfo set Password='"+pass+"',Login_By='"+loginby+"',Login_Date='"+logindate+"' where Username='"+uname+"'";
              int x=st.executeUpdate(query);
             
             if(x>0)
@@ -285,6 +285,84 @@ public class ManageProfileDBOperation {
         catch(Exception e)
         {
             System.out.println("Exeption in ManageProfileDBOperation Class in getAllStaffInfo() method is: "+e);
+
+        }
+
+       return staffinfo;
+    }    
+      
+       public boolean insertStaffLoginDetails(String uname, String logindatetime, String logoutdatetime)
+    {
+        boolean flag=true;
+
+        try
+        {
+
+            
+             Statement st= new DBDriver().getStatment();
+             String query="Insert into staffreport values('"+uname+"','"+logindatetime+"','"+logoutdatetime+"')";
+             int x=st.executeUpdate(query);
+            
+            if(x>0)
+                flag=true;
+            else
+                flag=false;
+          
+            st.close();
+
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Exeption in ManageProfileDBOperation Class in insertStaffLoginDetails() is: "+e);
+            flag=false;
+        }
+
+
+
+
+        return flag;
+    }
+       
+        public ArrayList getAllStaffReportInfo()
+    {
+
+       ArrayList staffinfo=new ArrayList();
+
+        try
+        {
+
+             Statement st= new DBDriver().getStatment();
+              String query="Select *from staffreport";
+              ResultSet rs1=st.executeQuery(query);
+             
+             while(rs1.next())
+            {
+
+             ArrayList temp=new ArrayList();   
+             String uname=rs1.getString(1);
+             String logindatetime=rs1.getString(2);
+             String logoutdatetime=rs1.getString(3);
+            
+             
+            
+             temp.add(uname);
+             temp.add(logindatetime);
+             temp.add(logoutdatetime);
+          
+              
+            staffinfo.add(temp);
+            
+
+            }
+             
+             st.close();
+             
+        }
+
+        catch(Exception e)
+        {
+            System.out.println("Exception in ManageProfileDBOperation Class in getAllStaffReportInfo() method is: "+e);
 
         }
 

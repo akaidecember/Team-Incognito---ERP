@@ -20,7 +20,7 @@ import java.util.ArrayList;
  *
  * @author VOSTRO2557
  */
-public class PurchaseDBOperation {
+public class SaleDBOperation {
     
     
     
@@ -55,7 +55,7 @@ public class PurchaseDBOperation {
               
            catch (Exception e)
            {
-               System.out.println("Exception in PurchaseDBOperation Class and mathod is getPartyNames(): "+e);
+               System.out.println("Exception in SaleDBOperation Class and mathod is getPartyNames(): "+e);
            }
        
         return names;
@@ -100,7 +100,7 @@ public class PurchaseDBOperation {
               
            catch (Exception e)
            {
-               System.out.println("Exception in PurchaseDBOperation Class and methid is getPartyNames(): "+e);
+               System.out.println("Exception in SaleDBOperation Class and methid is getPartyNames(): "+e);
            }
        
         return costcentre;
@@ -151,7 +151,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class  and method is getPartyInfo (): "+e);
+            System.out.println("Exeption in SaleDBOperation Class  and method is getPartyInfo (): "+e);
 
         }
 
@@ -195,7 +195,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class and method getItemInfo() "+e);
+            System.out.println("Exeption in SaleDBOperation Class and method getItemInfo() "+e);
 
         }
 
@@ -241,7 +241,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class and method getItemInfo() "+e);
+            System.out.println("Exeption in SaleDBOperation Class and method getItemInfo() "+e);
 
         }
 
@@ -271,14 +271,13 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class  and methos is getHomeCompanyGST() "+e);
+            System.out.println("Exeption in SaleDBOperation Class  and method is getHomeCompanyGST() "+e);
 
         }
-
        return hcomgst;
     }    
     
-    public boolean addPurchaseInfo(String pname, String gstin, String supplyplace, String ptype, String ccentre, String saleref, String inum, String ponum, String idate, String ptdays, String pduedate, String iname, String idescrip, String hsnsaccode, String gstrate, String unit,String quantity, String rate, String amount, String discount,String taxamount, String cgst, String sgst, String igst,String total, String tiamount, String bdetails, String narration, String loginby, String logindate )
+    public boolean addSaleInfo(String pname, String gstin, String supplyplace, String stype, String ccentre, String saleref, String inum, String ponum, String idate, String ptdays, String pduedate, String iname, String idescrip, String hsnsaccode, String gstrate, String unit,String quantity, String rate, String amount, String discount,String taxamount, String cgst, String sgst, String igst,String total, String tiamount, String bdetails, String narration, String loginby, String logindate )
     {
         boolean flag=true;
 
@@ -287,7 +286,7 @@ public class PurchaseDBOperation {
 
             
              Statement st= new DBDriver().getStatment();
-             String query="Insert into purchaseinfo values('"+pname+"','"+gstin+"','"+supplyplace+"','"+ptype+"','"+ccentre+"','"+saleref+"','"+inum+"','"+ponum+"','"+idate+"','"+ptdays+"','"+pduedate+"' ,'"+iname+"','"+idescrip+"','"+hsnsaccode+"','"+gstrate+"','"+unit+"','"+quantity+"', '"+rate+"','"+amount+"','"+discount+"','"+taxamount+"','"+cgst+"','"+sgst+"','"+igst+"','"+total+"','"+tiamount+"','"+bdetails+"','"+narration+"','"+loginby+"','"+logindate+"')";
+             String query="Insert into saleinfo values('"+pname+"','"+gstin+"','"+supplyplace+"','"+stype+"','"+ccentre+"','"+saleref+"','"+inum+"','"+ponum+"','"+idate+"','"+ptdays+"','"+pduedate+"' ,'"+iname+"','"+idescrip+"','"+hsnsaccode+"','"+gstrate+"','"+unit+"','"+quantity+"', '"+rate+"','"+amount+"','"+discount+"','"+taxamount+"','"+cgst+"','"+sgst+"','"+igst+"','"+total+"','"+tiamount+"','"+bdetails+"','"+narration+"','"+loginby+"','"+logindate+"')";
              int x=st.executeUpdate(query);
             
             if(x>0)
@@ -301,7 +300,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class and method is addPurchaseInfo(): "+e);
+            System.out.println("Exeption in SaleDBOperation Class and method is addSaleInfo(): "+e);
             flag=false;
         }
 
@@ -343,7 +342,7 @@ public class PurchaseDBOperation {
         return flag;
     }
     
-      public boolean addSearchPurchaseInfo(String pname, String gstin, String inum, String idate, String ivalue,String totaltaxamount, String cgst, String sgst, String igst,String paystatus, String loginby, String logindate)
+      public boolean addSearchSaleInfo(String pname, String gstin, String inum, String idate, String ivalue,String totaltaxamount, String cgst, String sgst, String igst,String paystatus, String loginby, String logindate)
     {
         boolean flag=true;
 
@@ -357,7 +356,7 @@ public class PurchaseDBOperation {
           
             System.out.println("idate : "+idate);
              Statement st= new DBDriver().getStatment();
-             String query="Insert into searchpurchaseinfo values('"+pname+"','"+gstin+"','"+inum+"','"+idate+"','"+ivalue+"','"+totaltaxamount+"','"+cgst+"','"+sgst+"','"+igst+"','"+paystatus+"','"+loginby+"','"+logindate+"')";
+             String query="Insert into searchsaleinfo values('"+pname+"','"+gstin+"','"+inum+"','"+idate+"','"+ivalue+"','"+totaltaxamount+"','"+cgst+"','"+sgst+"','"+igst+"','"+paystatus+"','"+loginby+"','"+logindate+"')";
              int x=st.executeUpdate(query);
             
             if(x>0)
@@ -370,7 +369,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is addSearchPurchaseInfo(): "+e);
+            System.out.println("Exeption in SaleDBOperation and method is addSearchSaleInfo(): "+e);
             flag=false;
         }
 
@@ -381,218 +380,6 @@ public class PurchaseDBOperation {
     }
    
     
-    public boolean addPurchasePaymentInfo(String pname, String inum, String idate, String iamount,String paid,String paying, String paymode, String status, String remamount, String descrip , String loginby, String logindate)
-    {
-        boolean flag=true;
-
-        try
-        {
-
-            
-             Statement st= new DBDriver().getStatment();
-             String []date1=idate.split("/");
-             idate=date1[2]+"-"+date1[1]+"-"+date1[0];
-             String query="Insert into purchasepaymentinfo values('"+pname+"','"+inum+"','"+idate+"','"+iamount+"','"+paid+"','"+paying+"','"+paymode+"','"+status+"','"+remamount+"','"+descrip+"','"+loginby+"','"+logindate+"')";
-             int x=st.executeUpdate(query);
-            
-            if(x>0)
-                flag=true;
-            else
-                flag=false;
-          st.close();
-          
-
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exeption in PurchaseDBOperation and method is addPurchasePaymentInfo(): "+e);
-            flag=false;
-        }
-
-
-
-
-        return flag;
-    }
-
-     public ArrayList getAllPurchasePaymentInfo()
-    {
-
-      ArrayList searchinfo=new ArrayList();       
-       
-       
-
-        try
-        {
-
-              Statement st= new DBDriver().getStatment();             
-              String query="Select *from purchasepaymentinfo";
-              ResultSet rs1=st.executeQuery(query);
-
-             
-             while(rs1.next())
-            {
-
-             
-             ArrayList partyinfo=new ArrayList(); 
-             String pname=  rs1.getString(1); 
-             String invoiceno=rs1.getString(2);
-             String invoicedate=rs1.getString(3);
-             String invoiceamount=rs1.getString(4);
-             String paid=rs1.getString(5);
-             String paying=rs1.getString(6);
-             String paymode=rs1.getString(7);
-             String status=rs1.getString(8);
-             String rembalan=rs1.getString(9);
-             
-             
-             String descrip=rs1.getString(10);
-             String []date1=invoicedate.split("-");
-             invoicedate=date1[2]+"/"+date1[1]+"/"+date1[0];
-           
-             
-            
-             
-              partyinfo.add(pname);
-              partyinfo.add(invoiceno);
-              partyinfo.add(invoicedate);
-              partyinfo.add(invoiceamount);
-              partyinfo.add(paid);
-              partyinfo.add(paying);
-              partyinfo.add(paymode);
-              partyinfo.add(status);
-              partyinfo.add(rembalan);
-              partyinfo.add(descrip);
-             
-             
-              
-              searchinfo.add(partyinfo);
-           
-
-            }
-             st.close();
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exception in PurchaseDBOperation Class and meethod is getAllPurchasePaymentInfo(): "+e);
-
-        }
-
-       return searchinfo;
-    }    
-     
-     public ArrayList getPurchasePartyPaymentStatus()
-    {
-
-      ArrayList searchinfo=new ArrayList();       
-       
-       
-
-        try
-        {
-
-              Statement st= new DBDriver().getStatment();             
-              String query="Select *from purchasepaymentinfo";
-              ResultSet rs1=st.executeQuery(query);
-
-             
-             while(rs1.next())
-            {
-
-             
-             ArrayList partyinfo=new ArrayList(); 
-             String pname=  rs1.getString(1); 
-             String status=rs1.getString(7);
-             
-             
-            
-             
-              partyinfo.add(pname);
-              partyinfo.add(status);
-              
-             
-              
-              searchinfo.add(partyinfo);
-           
-
-            }
-             st.close();
-             
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exeption in PurchaseDBOperation and method is getPurchasePartyPaymentStatus () "+e);
-
-        }
-
-       return searchinfo;
-    }    
-     
-     
-     public ArrayList getDateWisePurchasePaymentInfo(String date1, String date2)
-    {
-
-       ArrayList searchinfo=new ArrayList();
-
-        try
-        {
-
-            Statement st1= new DBDriver().getStatment(); 
-            String query = "select * from purchasepaymentinfo where Invoice_Date BETWEEN'"+date1+"' and '"+date2+"'";
-
-            ResultSet rs1=st1.executeQuery(query);
-            
-
-             while(rs1.next())
-            {
-
-             ArrayList partyinfo=new ArrayList(); 
-             String pname=  rs1.getString(1); 
-             String invoiceno=rs1.getString(2);
-             String invoicedate=rs1.getString(3);
-             String invoiceamount=rs1.getString(4);
-             String paying=rs1.getString(5);
-             String paymode=rs1.getString(6);
-             String status=rs1.getString(7);
-             String rembalan=rs1.getString(8);
-             String descrip=rs1.getString(9);;
-             String pay="Pay";
-             
-            
-             
-              partyinfo.add(pname);
-              partyinfo.add(invoiceno);
-              partyinfo.add(invoicedate);
-              partyinfo.add(invoiceamount);
-              partyinfo.add(paying);
-              partyinfo.add(paymode);
-              partyinfo.add(status);
-              partyinfo.add(rembalan);
-              partyinfo.add(descrip);
-              partyinfo.add(pay);
-              
-              searchinfo.add(partyinfo);
-              
-
-            }
-             st1.close();
-             
-            
-
-
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exeption in PurchaseDBOperation and method is getDateWisePurchasePaymentInfo (): "+e);
-
-        }
-
-       return searchinfo;
-    }
      
       public boolean updateGSTinfo(String pname, String inum, String gstrate,String taxamount, String cgst, String sgst, String igst)
     {
@@ -615,14 +402,14 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is updateGSTinfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is updateGSTinfo() "+e);
             flag=false;
         }
         
         return flag;
     }
 
-      public boolean updateSearchPurchaseinfo(String pname, String gstin, String inum, String idate, String ivalue,String totaltaxamount, String cgst, String sgst, String igst,String paystatus, String loginby, String logindate)
+      public boolean updateSearchSaleinfo(String pname, String gstin, String inum, String idate, String ivalue,String totaltaxamount, String cgst, String sgst, String igst,String paystatus, String loginby, String logindate)
     {
         boolean flag=true;
          try
@@ -630,7 +417,7 @@ public class PurchaseDBOperation {
 
             
              Statement st= new DBDriver().getStatment();
-             String query="Update searchpurchaseinfo set Party_Name='"+pname+"',GSTIN='"+gstin+"',Invoice_Date='"+idate+"',Invoice_Value='"+ivalue+"',Taxable_Amount='"+totaltaxamount+"',CGST='"+cgst+"',SGST='"+sgst+"' ,IGST='"+igst+"',Payment_Status='"+paystatus+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Invoice_Number='"+inum+"'";
+             String query="Update searchsaleinfo set Party_Name='"+pname+"',GSTIN='"+gstin+"',Invoice_Date='"+idate+"',Invoice_Value='"+ivalue+"',Taxable_Amount='"+totaltaxamount+"',CGST='"+cgst+"',SGST='"+sgst+"' ,IGST='"+igst+"',Payment_Status='"+paystatus+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Invoice_Number='"+inum+"'";
              int x=st.executeUpdate(query);
             
             if(x>0)
@@ -643,7 +430,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is updateSearchPurchaseinfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is updateSearchSaleinfo() "+e);
             flag=false;
         }
         
@@ -658,7 +445,7 @@ public class PurchaseDBOperation {
 
             
              Statement st= new DBDriver().getStatment();
-             String query="Update searchpurchaseinfo set Payment_Status='"+paystatus+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Invoice_Number='"+inum+"' and Party_Name='"+pname+"'";
+             String query="Update searchsaleinfo set Payment_Status='"+paystatus+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Invoice_Number='"+inum+"' and Party_Name='"+pname+"'";
              int x=st.executeUpdate(query);
             
             if(x>0)
@@ -671,42 +458,15 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is updateSearchPaymentStatusinfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is updateSearchPaymentStatusinfo() "+e);
             flag=false;
         }
         
         return flag;
     }
   
-     public boolean updatePurchasePaymentinfo(String pname, String inum, String idate, String iamount,String paid,String paying, String paymode, String status, String remamount, String descrip, String loginby, String logindate )
-    {
-        boolean flag=true;
-         try
-        {
-
-            
-             Statement st= new DBDriver().getStatment();
-             String query="Update purchasepaymentinfo set Party_Name='"+pname+"',Invoice_Date='"+idate+"',Invoice_Amount='"+iamount+"',Paid='"+paid+"',Paying='"+paying+"',Payment_Mode='"+paymode+"',Status='"+status+"' ,Remaining_Balance='"+remamount+"',Description='"+descrip+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Invoice_Number='"+inum+"'";
-             int x=st.executeUpdate(query);
-            
-            if(x>0)
-                flag=true;
-            else
-                flag=false;
-          st.close();
-
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exeption in PurchaseDBOperation and method is updatePurchasePaymentinfo() "+e);
-            flag=false;
-        }
-        
-        return flag;
-    }
      
-      public ArrayList getAllSearchPurchaseInfo()
+      public ArrayList getAllSearchSaleInfo()
     {
 
       ArrayList searchinfo=new ArrayList(); 
@@ -718,7 +478,7 @@ public class PurchaseDBOperation {
         {
 
               Statement st= new DBDriver().getStatment();             
-              String query1="Select *from searchpurchaseinfo ";
+              String query1="Select *from searchsaleinfo ";
 //              inner join purchasepaymentinfo on Status";
               ResultSet rs1=st.executeQuery(query1);
 
@@ -768,7 +528,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is getAllSearchPurchaseInfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is getAllSearchSaleInfo() "+e);
 
         }
 
@@ -776,7 +536,7 @@ public class PurchaseDBOperation {
     }    
       
      
-      public ArrayList getAllPurchaseInfo()
+      public ArrayList getAllSaleInfo()
     {
 
       ArrayList searchinfo=new ArrayList(); 
@@ -788,7 +548,7 @@ public class PurchaseDBOperation {
         {
 
               Statement st= new DBDriver().getStatment();             
-              String query1="Select *from purchaseinfo ";
+              String query1="Select *from saleinfo ";
 //              inner join purchasepaymentinfo on Status";
               ResultSet rs1=st.executeQuery(query1);
 
@@ -838,7 +598,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is getAllPurchaseInfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is getAllSaleInfo() "+e);
 
         }
 
@@ -846,7 +606,7 @@ public class PurchaseDBOperation {
     }    
       
     
-    public ArrayList getPartyPurchaseInfo(String name, String inum)
+    public ArrayList getPartySaleInfo(String name, String inum)
     {
 
       ArrayList searchinfo=new ArrayList(); 
@@ -858,7 +618,7 @@ public class PurchaseDBOperation {
         {
 
               Statement st= new DBDriver().getStatment();             
-              String query="Select *from purchaseinfo where Party_Name='"+name+"' and Invoice_Number='"+inum+"'";
+              String query="Select *from saleinfo where Party_Name='"+name+"' and Invoice_Number='"+inum+"'";
               ResultSet rs1=st.executeQuery(query);
 
              
@@ -940,7 +700,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is getPartyPurchaseInfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is getPartySaleInfo() "+e);
 
         }
 
@@ -988,7 +748,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class  and method is getPartyGSTInfo (): "+e);
+            System.out.println("Exeption in SaleDBOperation Class  and method is getPartyGSTInfo (): "+e);
 
         }
 
@@ -996,7 +756,7 @@ public class PurchaseDBOperation {
     }    
     
     
-     public boolean updateNewPurchaseinfo(String pname, String gstin, String supplyplace, String ptype, String ccentre, String saleref, String inum, String ponum, String idate, String ptdays, String pduedate, String iname, String idescrip, String hsnsaccode, String gstrate, String unit,String quantity, String rate, String amount, String discount,String taxamount, String cgst, String sgst, String igst,String total, String tiamount, String bdetails, String narration, String loginby, String logindate )
+     public boolean updateNewSaleinfo(String pname, String gstin, String supplyplace, String ptype, String ccentre, String saleref, String inum, String ponum, String idate, String ptdays, String pduedate, String iname, String idescrip, String hsnsaccode, String gstrate, String unit,String quantity, String rate, String amount, String discount,String taxamount, String cgst, String sgst, String igst,String total, String tiamount, String bdetails, String narration, String loginby, String logindate )
     {
         boolean flag=true;
          try
@@ -1004,7 +764,7 @@ public class PurchaseDBOperation {
 
             
              Statement st= new DBDriver().getStatment();
-             String query="Update purchaseinfo set GSTIN='"+gstin+"',Place_of_Supply='"+supplyplace+"',Purchase_Type='"+ptype+"',Cost_Centre='"+ccentre+"',Sale_Ref='"+saleref+"',PO_Number='"+ponum+"',Invoice_Date='"+idate+"',Payment_Term_Days='"+ptdays+"',Payment_Due_Date='"+pduedate+"',Item_Description='"+idescrip+"',HSN_SAC_Code='"+hsnsaccode+"',GST_Rate='"+gstrate+"',Unit='"+unit+"',Quantity='"+quantity+"',Rate='"+rate+"',Amount='"+amount+"',Discount='"+discount+"',Taxable_Amount='"+taxamount+"',CGST='"+cgst+"',SGST='"+sgst+"',IGST='"+igst+"',Total='"+total+"',Total_Invoice_Amount='"+tiamount+"',Bank_Details='"+bdetails+"',Narration='"+narration+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Party_Name='"+pname+"' and Invoice_Number='"+inum+"'and Item_Name='"+iname+"'" ;
+             String query="Update saleinfo set GSTIN='"+gstin+"',Place_of_Supply='"+supplyplace+"',Sale_Type='"+ptype+"',Cost_Centre='"+ccentre+"',Sale_Ref='"+saleref+"',PO_Number='"+ponum+"',Invoice_Date='"+idate+"',Payment_Term_Days='"+ptdays+"',Payment_Due_Date='"+pduedate+"',Item_Description='"+idescrip+"',HSN_SAC_Code='"+hsnsaccode+"',GST_Rate='"+gstrate+"',Unit='"+unit+"',Quantity='"+quantity+"',Rate='"+rate+"',Amount='"+amount+"',Discount='"+discount+"',Taxable_Amount='"+taxamount+"',CGST='"+cgst+"',SGST='"+sgst+"',IGST='"+igst+"',Total='"+total+"',Total_Invoice_Amount='"+tiamount+"',Bank_Details='"+bdetails+"',Narration='"+narration+"',Login_By='"+loginby+"',Login_Date='"+logindate+"'where Party_Name='"+pname+"' and Invoice_Number='"+inum+"'and Item_Name='"+iname+"'" ;
                                                                                                                                                                                                                                                                                                                                                                                                                                          
             int x=st.executeUpdate(query);
             if(x>0)
@@ -1019,7 +779,7 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in updateNewPurchaseinfo() in PurchaseDBOperation Class is: "+e);
+            System.out.println("Exception in updateNewSaleinfo() in SaleDBOperation Class is: "+e);
             flag=false;
         }
         
@@ -1034,7 +794,7 @@ public class PurchaseDBOperation {
            
             
               Statement st= new DBDriver().getStatment();
-             String query=" delete from searchpurchaseinfo where Invoice_Number='"+invoicenum+"'";
+             String query=" delete from searchsaleinfo where Invoice_Number='"+invoicenum+"'";
 
             
 //            
@@ -1046,7 +806,7 @@ public class PurchaseDBOperation {
         
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation Class and Function is deleteInvoiceNumbers(): "+e);
+            System.out.println("Exception in SaleDBOperation Class and Function is deleteInvoiceNumbers(): "+e);
            
         }
         
@@ -1054,179 +814,10 @@ public class PurchaseDBOperation {
         
      }
      
-     public boolean addAdvancePaymentInfo(String pname, String amount, String date, String pmode, String description)
-    {
-        boolean flag=true;
-
-        try
-        {
-
-            
-             Statement st= new DBDriver().getStatment();
-             String query="Insert into advancepaymentinfo values('"+pname+"','"+amount+"','"+date+"','"+pmode+"','"+description+"')";
-             int x=st.executeUpdate(query);
-            
-            if(x>0)
-                flag=true;
-            else
-                flag=false;
-          
-            st.close();
-
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exception in PurchaseDBOperation Class and method is addAdvancePaymentInfo(): "+e);
-            flag=false;
-        }
-
-
-
-
-        return flag;
-    }
-     
-     public ArrayList getAdvancePaymentInfo(String pname)
+     public ArrayList getAllSaleItemInfo()
     {
 
-       ArrayList partyadvanceinfo=new ArrayList();
-
-        try
-        {
-
-             Statement st= new DBDriver().getStatment();
-              String query="Select *from advancepaymentinfo where Party_Name='"+pname+"'";
-              ResultSet rs1=st.executeQuery(query);
-             
-             if(rs1.next())
-            {
-
-             String partyname=rs1.getString(1);
-             String advance=rs1.getString(2);
-             String date=rs1.getString(3);
-             String pmode=rs1.getString(4);
-             String description=rs1.getString(5);
-             
-             partyadvanceinfo.add(partyname);
-             partyadvanceinfo.add(advance);
-             partyadvanceinfo.add(date);
-             partyadvanceinfo.add(pmode);
-             partyadvanceinfo.add(description);
-             
-             
-            }
-             st.close();
-             
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exception in PurchaseDBOperation Class  and method is getAdvancePaymentInfo (): "+e);
-
-        }
-
-       return partyadvanceinfo;
-    }    
-     
-     public boolean updateAdvancePaymentInfo(String pname, String amount, String date, String pmode, String description)
-    {
-        boolean flag=true;
-         try
-        {
-
-            
-             Statement st= new DBDriver().getStatment();
-             String query="Update advancepaymentinfo set Amount='"+amount+"',Date='"+date+"',Payment_Mode='"+pmode+"',Description='"+description+"'where Party_Name='"+pname+"'" ;
-                                                                                                                                                                                                                                                                                                                                                                                                                                         
-            int x=st.executeUpdate(query);
-            if(x>0)
-                flag=true;
-            else
-                flag=false;
-                        
-                        st.close();
-          
-
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exception in updateAdvancePaymentInfo() in PurchaseDBOperation Class is: "+e);
-            flag=false;
-        }
-        
-        return flag;
-    }
-     
-     public ArrayList getAllPartyAdvanceInfo()
-    {
-        ArrayList advanceinfo=new ArrayList();
-        try
-           {
-             Statement st= new DBDriver().getStatment();
-             String query="Select *from advancepaymentinfo";
-              ResultSet rs1=st.executeQuery(query);
-         
-             while(rs1.next())
-            {
-
-                ArrayList info = new ArrayList();
-                String pname = rs1.getString(1);
-                String amount = rs1.getString(2);
-                info.add(pname);
-                info.add(amount);
-                
-                advanceinfo.add(info);
-            }
-             st.close();
-             
-                  
-              }
-              
-           catch (Exception e)
-           {
-               System.out.println("Exception in PurchaseDBOperation Class and mathod is getAllPartyAdvanceInfo(): "+e);
-           }
-       
-        return advanceinfo;
-        
-    }
-     
-     public boolean updateAdvanceInfo(String pname, String amount)
-    {
-        boolean flag=true;
-         try
-        {
-
-            
-             Statement st= new DBDriver().getStatment();
-             String query="Update advancepaymentinfo set Amount='"+amount+"'where Party_Name='"+pname+"'" ;
-                                                                                                                                                                                                                                                                                                                                                                                                                                         
-            int x=st.executeUpdate(query);
-            if(x>0)
-                flag=true;
-            else
-                flag=false;
-                        
-                        st.close();
-          
-
-        }
-
-        catch(Exception e)
-        {
-            System.out.println("Exception in updateAdvanceInfo() in PurchaseDBOperation Class is: "+e);
-            flag=false;
-        }
-        
-        return flag;
-    }
-     
-     public ArrayList getAllPurcaseItemInfo()
-    {
-
-      ArrayList purnfo=new ArrayList(); 
+      ArrayList saleinfo=new ArrayList(); 
       int i=0;
        
        
@@ -1235,7 +826,7 @@ public class PurchaseDBOperation {
         {
 
               Statement st= new DBDriver().getStatment();             
-              String query1="Select *from purchaseinfo ";
+              String query1="Select *from saleinfo ";
 //              inner join purchasepaymentinfo on Status";
               ResultSet rs1=st.executeQuery(query1);
 
@@ -1246,14 +837,14 @@ public class PurchaseDBOperation {
              
              ArrayList temp=new ArrayList(); 
             
-             String itemname=  rs1.getString(12);
+             String itemname=  rs1.getString(12); 
              itemname=itemname.toLowerCase();
              String tamount=  rs1.getString(25);
             
              temp.add(itemname);
              temp.add(tamount);
              
-             purnfo.add(temp);
+             saleinfo.add(temp);
              
             }
              st.close();
@@ -1261,14 +852,15 @@ public class PurchaseDBOperation {
 
         catch(Exception e)
         {
-            System.out.println("Exeption in PurchaseDBOperation and method is getAllPurcaseItemInfo() "+e);
+            System.out.println("Exeption in SaleDBOperation and method is getAllSaleItemInfo() "+e);
 
         }
 
-       return purnfo;
+       return saleinfo;
     }    
       
      
+    
 }
     
     
