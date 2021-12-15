@@ -1,26 +1,14 @@
 package CeoGUI;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-
-
 import ManagerGUI.*;
 import dbdriver.DBDriver;
 import dboperation.HomeCompanyDBOperation;
 import dboperation.PurchaseDBOperation;
 import dboperation.SaleDBOperation;
-
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-/**
- *
- * @author welcome
- */import java.awt.Toolkit;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.sql.ResultSet;
 import java.sql.Statement;
@@ -31,11 +19,7 @@ import javax.swing.BorderFactory;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.border.TitledBorder;
-//import org.jfree.chart.ChartFactory;
-//import org.jfree.chart.ChartPanel;
-//import org.jfree.chart.JFreeChart;
-//import org.jfree.chart.plot.PlotOrientation;
-//import org.jfree.data.category.DefaultCategoryDataset;
+
 
 public class CEOOperationFrame extends javax.swing.JFrame {
 
@@ -44,16 +28,9 @@ public class CEOOperationFrame extends javax.swing.JFrame {
      */
     public CEOOperationFrame() {
         
-        
         super("CEO OPERATION FRAME Login By"+" "+LoginFrame.uname);
         initComponents();
-        
-       
-       
-       
-        
 
-       
     }
 
     /**

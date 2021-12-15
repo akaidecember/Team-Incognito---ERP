@@ -1,11 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package staffGUI;
-
-
 
 import ManagerGUI.CurrentDateTime;
 import ManagerGUI.LoginFrame;
@@ -33,104 +27,88 @@ import validation.Validator;
 import dboperation.ManageClientDBOperation;
 import dboperation.ManageProfileDBOperation;
 
-
-
-
-/**
- *
- * @author welcome
- */
 public class EditClientFrame extends javax.swing.JFrame {
-    
-     public static String sname="";
-    ArrayList bankdetail=new ArrayList();
-     ArrayList accnum=new ArrayList();
-     public String gst=null;
-    public String email="No Email id";
-    String banksinfo="No Bank Info";
-    public static String logoutdatetime=new CurrentDateTime().getDateTime();
-  
-    
-    String dbankacc="";
+
+    public static String sname = "";
+    ArrayList bankdetail = new ArrayList();
+    ArrayList accnum = new ArrayList();
+    public String gst = null;
+    public String email = "No Email id";
+    String banksinfo = "No Bank Info";
+    public static String logoutdatetime = new CurrentDateTime().getDateTime();
+
+    String dbankacc = "";
 
     /**
      * Creates new form AddHomeCompanyProfileFrame1
      */
     public EditClientFrame() {
-        
-        super ("EDIT PARTY DETAILS Login By"+" "+LoginFrame.uname);
+
+        super("EDIT PARTY DETAILS Login By" + " " + LoginFrame.uname);
         initComponents();
-       // jTextField1.setText(name);
-       ((DefaultTableCellRenderer)jTable1.getTableHeader().getDefaultRenderer())
-           .setHorizontalAlignment((int) TOP_ALIGNMENT);
-        
-         
-              
-               ManageClientDBOperation mo=new ManageClientDBOperation();
-               ArrayList pinfo=mo.getPartyInfo(sname);
-               // System.out.println(pinfo);
-               String bankdetails= (String) pinfo.get(10);
-               String[] bankinfo=bankdetails.split(",");
-               
-                ArrayList banks=new ArrayList();
-              for(int i=1;i<bankinfo.length;i++)
-               {
-                   ArrayList temp=new ArrayList();
-                   String str=bankinfo[i];
-              //     System.out.println(str);
-                   String [] str1=str.split("#");
-                 
-                   for(int j=0;j<str1.length;j++)
-                   {
-                        
-                        temp.add(str1[j].toString());
-                      
-                   }
-                 //    System.out.println(temp);
-                   
-                     banks.add(temp);
-                     bankdetail.add(temp);
-               }
-              //  System.out.println(banks);
-               
-               for (int i = 0; i <bankdetail.size(); i++) 
-               {
-                   ArrayList row=(ArrayList) bankdetail.get(i);
-                   accnum.add(row.get(1));
-               }
-               
-             //   System.out.println(bankdetail);
-         
-               
-               int rowheight=30; 
-               int colsize=jTable1.getColumnCount();
-               jTextField1.setText(sname);
-               jTextArea1.setText(pinfo.get(0).toString());
-               jTextField4.setText(pinfo.get(1).toString());
-               jTextField5.setText(pinfo.get(2).toString());
-               jComboBox1.setSelectedItem(pinfo.get(3).toString());
-               jTextField6.setText(pinfo.get(4).toString());
-               jTextField7.setText(pinfo.get(5).toString());
-               jComboBox5.setSelectedItem(pinfo.get(9).toString());
-               jTextField11.setText(pinfo.get(7).toString());
-               jTextField10.setText(pinfo.get(6).toString());
-               jComboBox3.setSelectedItem(pinfo.get(8).toString());
-               
-               InsertDataToTable it=new InsertDataToTable();
-               it.getDataInserted(jTable1, colsize, banks,rowheight);
-               jTextField19.setText(bankinfo[0].toString());
-               jTextField17.setText(pinfo.get(11).toString());
-               jTextField20.setText(pinfo.get(12).toString());
-               jTextField21.setText(pinfo.get(13).toString());
-               
-                 jTextField19.setEditable(false);
-               
-                jTextField1.setEditable(false);
-           
-            jTextField1.setBackground(Color.lightGray);
-           
-        
-        
+        // jTextField1.setText(name);
+        ((DefaultTableCellRenderer) jTable1.getTableHeader().getDefaultRenderer())
+                .setHorizontalAlignment((int) TOP_ALIGNMENT);
+
+        ManageClientDBOperation mo = new ManageClientDBOperation();
+        ArrayList pinfo = mo.getPartyInfo(sname);
+        // System.out.println(pinfo);
+        String bankdetails = (String) pinfo.get(10);
+        String[] bankinfo = bankdetails.split(",");
+
+        ArrayList banks = new ArrayList();
+        for (int i = 1; i < bankinfo.length; i++) {
+            ArrayList temp = new ArrayList();
+            String str = bankinfo[i];
+            // System.out.println(str);
+            String[] str1 = str.split("#");
+
+            for (int j = 0; j < str1.length; j++) {
+
+                temp.add(str1[j].toString());
+
+            }
+            // System.out.println(temp);
+
+            banks.add(temp);
+            bankdetail.add(temp);
+        }
+        // System.out.println(banks);
+
+        for (int i = 0; i < bankdetail.size(); i++) {
+            ArrayList row = (ArrayList) bankdetail.get(i);
+            accnum.add(row.get(1));
+        }
+
+        // System.out.println(bankdetail);
+
+        int rowheight = 30;
+        int colsize = jTable1.getColumnCount();
+        jTextField1.setText(sname);
+        jTextArea1.setText(pinfo.get(0).toString());
+        jTextField4.setText(pinfo.get(1).toString());
+        jTextField5.setText(pinfo.get(2).toString());
+        jComboBox1.setSelectedItem(pinfo.get(3).toString());
+        jTextField6.setText(pinfo.get(4).toString());
+        jTextField7.setText(pinfo.get(5).toString());
+        jComboBox5.setSelectedItem(pinfo.get(9).toString());
+        jTextField11.setText(pinfo.get(7).toString());
+        jTextField10.setText(pinfo.get(6).toString());
+        jComboBox3.setSelectedItem(pinfo.get(8).toString());
+
+        InsertDataToTable it = new InsertDataToTable();
+        it.getDataInserted(jTable1, colsize, banks, rowheight);
+        jTextField19.setText(bankinfo[0].toString());
+        jTextField17.setText(pinfo.get(11).toString());
+        jTextField20.setText(pinfo.get(12).toString());
+        jTextField21.setText(pinfo.get(13).toString());
+
+        jTextField19.setEditable(false);
+
+        jTextField1.setEditable(false);
+
+        jTextField1.setBackground(Color.lightGray);
+
     }
 
     /**
@@ -139,7 +117,8 @@ public class EditClientFrame extends javax.swing.JFrame {
      * regenerated by the Form Editor.
      */
     @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jLabel2 = new javax.swing.JLabel();
@@ -239,6 +218,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField1FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField1FocusLost(evt);
             }
@@ -255,6 +235,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField4FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField4FocusLost(evt);
             }
@@ -265,6 +246,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField5FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField5FocusLost(evt);
             }
@@ -274,7 +256,13 @@ public class EditClientFrame extends javax.swing.JFrame {
         jLabel8.setText("State:");
 
         jComboBox1.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh", "Chhattisgarh", "Delhi", "Dadra and Nagar Haveli", "Daman and Diu ", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya\t", "Mizoram", "Nagaland", "National Capital Territory of Delhi ", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select",
+                "Andaman and Nicobar Islands", "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chandigarh",
+                "Chhattisgarh", "Delhi", "Dadra and Nagar Haveli", "Daman and Diu ", "Goa", "Gujarat", "Haryana",
+                "Himachal Pradesh", "Jammu and Kashmir", "Jharkhand", "Karnataka", "Kerala", "Ladakh", "Lakshadweep",
+                "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya\t", "Mizoram", "Nagaland",
+                "National Capital Territory of Delhi ", "Odisha", "Puducherry", "Punjab", "Rajasthan", "Sikkim",
+                "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", "West Bengal" }));
         jComboBox1.setBorder(null);
         jComboBox1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -290,6 +278,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField6FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField6FocusLost(evt);
             }
@@ -303,6 +292,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField7FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField7FocusLost(evt);
             }
@@ -319,6 +309,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextArea1FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextArea1FocusLost(evt);
             }
@@ -333,75 +324,105 @@ public class EditClientFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(98, 98, 98)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel3)
-                        .addGap(85, 85, 85)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel9)
-                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel8)
-                                    .addGap(104, 104, 104)
-                                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGap(34, 34, 34)
-                                    .addComponent(jLabel11))
-                                .addComponent(jLabel7))
-                            .addGap(49, 49, 49)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel3Layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addGap(82, 82, 82)
-                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addGap(0, 25, Short.MAX_VALUE))
-        );
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel1)
+                                                .addGap(98, 98, 98)
+                                                .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(85, 85, 85)
+                                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel9)
+                                        .addGroup(jPanel3Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                                        .addGroup(jPanel3Layout
+                                                                .createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                                                        .addComponent(jLabel8)
+                                                                        .addGap(104, 104, 104)
+                                                                        .addGroup(jPanel3Layout.createParallelGroup(
+                                                                                javax.swing.GroupLayout.Alignment.TRAILING)
+                                                                                .addComponent(jTextField4,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                        170,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                                .addComponent(jComboBox1,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                                                        170,
+                                                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                                        .addGap(34, 34, 34)
+                                                                        .addComponent(jLabel11))
+                                                                .addComponent(jLabel7))
+                                                        .addGap(49, 49, 49)
+                                                        .addComponent(jTextField5,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 170,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                                .addGroup(jPanel3Layout.createSequentialGroup()
+                                                        .addComponent(jLabel10)
+                                                        .addGap(82, 82, 82)
+                                                        .addGroup(jPanel3Layout
+                                                                .createParallelGroup(
+                                                                        javax.swing.GroupLayout.Alignment.LEADING)
+                                                                .addComponent(jTextField7,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                                .addComponent(jTextField6,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGap(0, 25, Short.MAX_VALUE)));
         jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel11)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel9)
-                    .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel10)
-                    .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(53, 53, 53))
-        );
+                jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel3)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE,
+                                                javax.swing.GroupLayout.DEFAULT_SIZE,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22,
+                                        Short.MAX_VALUE)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel7)
+                                        .addGroup(jPanel3Layout.createSequentialGroup()
+                                                .addGap(4, 4, 4)
+                                                .addGroup(jPanel3Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                        .addComponent(jLabel11)
+                                                        .addComponent(jTextField4,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                        .addComponent(jTextField5,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                                javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel8)
+                                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel9)
+                                        .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel10)
+                                        .addComponent(jTextField7, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(53, 53, 53)));
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(10, 33, 640, 391);
@@ -467,6 +488,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField10FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField10FocusLost(evt);
             }
@@ -485,6 +507,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField11FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField11FocusLost(evt);
             }
@@ -493,6 +516,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField11KeyPressed(evt);
             }
+
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 jTextField11KeyReleased(evt);
             }
@@ -502,7 +526,14 @@ public class EditClientFrame extends javax.swing.JFrame {
         jLabel17.setText("State Code:");
 
         jComboBox3.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State GST Code", "01 Jammu & Kashmir", "02 Himachal Pradesh", "03 Punjab", "04 Chandigarh", "05 Uttarakhand", "06 Haryana", "07 Delhi", "08 Rajasthan", "09 Uttar Pradesh", "10 Bihar", "11 Sikkim", "12 Arunachal Pradesh", "13 Nagaland", "14 Manipur", "15 Mizoram", "16 Tripura", "17 Meghalaya", "18 Assam", "19 West Bengal", "20 Jharkhand", "21 Orissa", "22 Chhattisgarh", "23 Madhya Pradesh", "24 Gujarat", "25 Daman & Diu", "26 Dadra & Nagar Haveli", "27 Maharashtra", "28 Andhra Pradesh", "29 Karnataka", "30 Goa", "31 Lakshadweep", "32 Kerala", "33 Tamil Nadu", "34 Puducherry", "35 Andaman & Nicobar Islands", "36 Telengana", "37 Andrapradesh(New)" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select State GST Code",
+                "01 Jammu & Kashmir", "02 Himachal Pradesh", "03 Punjab", "04 Chandigarh", "05 Uttarakhand",
+                "06 Haryana", "07 Delhi", "08 Rajasthan", "09 Uttar Pradesh", "10 Bihar", "11 Sikkim",
+                "12 Arunachal Pradesh", "13 Nagaland", "14 Manipur", "15 Mizoram", "16 Tripura", "17 Meghalaya",
+                "18 Assam", "19 West Bengal", "20 Jharkhand", "21 Orissa", "22 Chhattisgarh", "23 Madhya Pradesh",
+                "24 Gujarat", "25 Daman & Diu", "26 Dadra & Nagar Haveli", "27 Maharashtra", "28 Andhra Pradesh",
+                "29 Karnataka", "30 Goa", "31 Lakshadweep", "32 Kerala", "33 Tamil Nadu", "34 Puducherry",
+                "35 Andaman & Nicobar Islands", "36 Telengana", "37 Andrapradesh(New)" }));
         jComboBox3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jComboBox3KeyPressed(evt);
@@ -513,7 +544,8 @@ public class EditClientFrame extends javax.swing.JFrame {
         jLabel31.setText("Party Type:");
 
         jComboBox5.setFont(new java.awt.Font("Calibri", 0, 14)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Unregistered", "Registered Business-Regular", "Registered Business-Composition" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Select", "Unregistered",
+                "Registered Business-Regular", "Registered Business-Composition" }));
         jComboBox5.setBorder(null);
         jComboBox5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -529,49 +561,58 @@ public class EditClientFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jLabel31))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel16))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel17)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jLabel15)
-                        .addGap(18, 18, 18)
-                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addComponent(jLabel31))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel16))
+                                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel17)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89,
+                                        Short.MAX_VALUE)
+                                .addGroup(jPanel2Layout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout
+                                                .createSequentialGroup()
+                                                .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 180,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel15)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 149,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 161,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 199,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()));
         jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel16)
-                    .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel15)
-                    .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel17))
-                .addGap(18, 18, 18))
-        );
+                jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel31)
+                                        .addComponent(jComboBox5, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel16)
+                                        .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel15)
+                                        .addComponent(jTextField10, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLabel17))
+                                .addGap(18, 18, 18)));
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(10, 456, 650, 141);
@@ -589,6 +630,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField12FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField12FocusLost(evt);
             }
@@ -602,6 +644,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField13FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField13FocusLost(evt);
             }
@@ -615,6 +658,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField14FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField14FocusLost(evt);
             }
@@ -646,25 +690,25 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField18FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField18FocusLost(evt);
             }
         });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "Bank Name", "Account Number", "IFSC Code", "Account Name", "Account Type"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false
+                },
+                new String[] {
+                        "Bank Name", "Account Number", "IFSC Code", "Account Name", "Account Type"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -688,6 +732,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField19FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField19FocusLost(evt);
             }
@@ -746,98 +791,110 @@ public class EditClientFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 603, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel32)
-                        .addGap(28, 28, 28)
-                        .addComponent(jButton7))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel19)
-                        .addGap(64, 64, 64)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel20)
-                        .addGap(25, 25, 25)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel21)
-                        .addGap(75, 75, 75)
-                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel22)
-                        .addGap(40, 40, 40)
-                        .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel23)
-                        .addGap(49, 49, 49)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(35, 35, 35)
-                        .addComponent(jButton5))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel29)
-                        .addGap(12, 12, 12)
-                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 261, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton6))))
-        );
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(12, 12, 12)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 603,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel32)
+                                                .addGap(28, 28, 28)
+                                                .addComponent(jButton7))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel19)
+                                                .addGap(64, 64, 64)
+                                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel20)
+                                                .addGap(25, 25, 25)
+                                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel21)
+                                                .addGap(75, 75, 75)
+                                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel22)
+                                                .addGap(40, 40, 40)
+                                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 450,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel23)
+                                                .addGap(49, 49, 49)
+                                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 170,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(35, 35, 35)
+                                                .addComponent(jButton5))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addComponent(jLabel29)
+                                                .addGap(12, 12, 12)
+                                                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 261,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton6)))));
         jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(13, 13, 13)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(3, 3, 3)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel32)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jButton7)))
-                .addGap(6, 6, 6)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel19)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel20)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(13, 13, 13)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel21)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel22)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(1, 1, 1)
-                        .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(15, 15, 15)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel23)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(4, 4, 4)
-                        .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jButton5)))
-                .addGap(14, 14, 14)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel29))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton6)))
-        );
+                jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                .addGap(13, 13, 13)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 91,
+                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(3, 3, 3)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel32)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jButton7)))
+                                .addGap(6, 6, 6)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel19)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jTextField12, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel20)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(13, 13, 13)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel21)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel22)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(1, 1, 1)
+                                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(15, 15, 15)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel23)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(4, 4, 4)
+                                                .addComponent(jComboBox4, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(jButton5)))
+                                .addGap(14, 14, 14)
+                                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(2, 2, 2)
+                                                .addComponent(jLabel29))
+                                        .addGroup(jPanel4Layout.createSequentialGroup()
+                                                .addGap(3, 3, 3)
+                                                .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jButton6))));
 
         getContentPane().add(jPanel4);
         jPanel4.setBounds(690, 33, 650, 390);
@@ -852,6 +909,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField17FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField17FocusLost(evt);
             }
@@ -865,6 +923,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField20FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField20FocusLost(evt);
             }
@@ -878,6 +937,7 @@ public class EditClientFrame extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTextField21FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTextField21FocusLost(evt);
             }
@@ -902,49 +962,55 @@ public class EditClientFrame extends javax.swing.JFrame {
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26)
-                            .addComponent(jLabel34)))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel30)))
-                .addGap(36, 36, 36)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jCheckBox1)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel33)
-                        .addGap(23, 23, 23)
-                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jTextField17))
-                .addGap(0, 0, 0))
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addGap(10, 10, 10)
+                                                .addGroup(jPanel5Layout
+                                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addComponent(jLabel26)
+                                                        .addComponent(jLabel34)))
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addContainerGap()
+                                                .addComponent(jLabel30)))
+                                .addGap(36, 36, 36)
+                                .addGroup(jPanel5Layout
+                                        .createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jCheckBox1)
+                                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 170,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jLabel33)
+                                                .addGap(23, 23, 23)
+                                                .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 170,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTextField17))
+                                .addGap(0, 0, 0)));
         jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(7, 7, 7)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jCheckBox1)
-                    .addComponent(jLabel34))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel33)
-                        .addComponent(jLabel26)))
-                .addContainerGap())
-        );
+                jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(7, 7, 7)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jCheckBox1)
+                                        .addComponent(jLabel34))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                        .addComponent(jLabel30)
+                                        .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(20, 20, 20)
+                                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jTextField21, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGroup(jPanel5Layout
+                                                .createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                                .addComponent(jTextField20, javax.swing.GroupLayout.PREFERRED_SIZE, 25,
+                                                        javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addComponent(jLabel33)
+                                                .addComponent(jLabel26)))
+                                .addContainerGap()));
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(690, 460, 650, 140);
@@ -1105,106 +1171,90 @@ public class EditClientFrame extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public String validGST(String gst)
-    {
-        String result="";
-        if(gst.length()==0)
-        {
-            result="Please Enter the GST Number";
+
+    public String validGST(String gst) {
+        String result = "";
+        if (gst.length() == 0) {
+            result = "Please Enter the GST Number";
         }
-       
-        else
-        {
-           try {
-			if (new GSTValidator().validGSTIN(gst))
-				result="VALID GST";
-			else
-				result="INVALID GST";
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+
+        else {
+            try {
+                if (new GSTValidator().validGSTIN(gst))
+                    result = "VALID GST";
+                else
+                    result = "INVALID GST";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
-        
-        
-        
+
         return result;
     }
-    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
-        String name=jTextField1.getText();
-        String address=jTextArea1.getText();
-        String city=jTextField4.getText();
-        String pin=jTextField5.getText();
-        String state=(String) jComboBox1.getSelectedItem();
-        String mob=jTextField6.getText();
-        String emailid=jTextField7.getText();  
-        String partytype=(String) jComboBox5.getSelectedItem();
-        String pan=jTextField10.getText();
-        String gstnumber=jTextField11.getText();
-        String gstscode=(String) jComboBox3.getSelectedItem();
-        
-        String defaultaccount=jTextField19.getText();
-        String cpname=jTextField17.getText();
-        String cpmob=jTextField20.getText();
-        String cpemail=jTextField21.getText();
-        String banks="";
-        
-         if(emailid.length()==0&&cpemail.length()==0)
-         {
-             emailid=email;
-             cpemail=email;
-         }
-         
-         if(gstnumber.length()==0)
-         {
-           gstnumber=gst; 
-         }
-         
-          if(pan.length()==0)
-         {
-           pan="No pan Details"; 
-         }
-        
-         
-      //   System.out.println("GSTCODE: "+gstcode);
-       
-        for(int i=0;i<bankdetail.size();i++)
-         {
-              String str="";
-             ArrayList temp=(ArrayList) bankdetail.get(i);
-             for(int j=0;j<temp.size();j++)
-             {
-                 str=str+temp.get(j).toString()+"#";
-                 
-             }
-             banks=banks+str+",";
-         }
-        
-        String bankinfo="";
-        if(banks.length()!=0)
-        {
-           bankinfo= defaultaccount+ ","+banks; 
+        String name = jTextField1.getText();
+        String address = jTextArea1.getText();
+        String city = jTextField4.getText();
+        String pin = jTextField5.getText();
+        String state = (String) jComboBox1.getSelectedItem();
+        String mob = jTextField6.getText();
+        String emailid = jTextField7.getText();
+        String partytype = (String) jComboBox5.getSelectedItem();
+        String pan = jTextField10.getText();
+        String gstnumber = jTextField11.getText();
+        String gstscode = (String) jComboBox3.getSelectedItem();
+
+        String defaultaccount = jTextField19.getText();
+        String cpname = jTextField17.getText();
+        String cpmob = jTextField20.getText();
+        String cpemail = jTextField21.getText();
+        String banks = "";
+
+        if (emailid.length() == 0 && cpemail.length() == 0) {
+            emailid = email;
+            cpemail = email;
         }
-        
-        
-        if(bankinfo.length()==0)
-        {
-            bankinfo=banksinfo;
+
+        if (gstnumber.length() == 0) {
+            gstnumber = gst;
         }
-                
-                
-          String pandetails="";
-        
-       if(!pan.equals("No pan Details"))
-        {
- 
-              pandetails=new PANValidator().isValidPAN(pan);
-      
+
+        if (pan.length() == 0) {
+            pan = "No pan Details";
         }
-            
-               
-        
-         if (name.isEmpty()) {
+
+        // System.out.println("GSTCODE: "+gstcode);
+
+        for (int i = 0; i < bankdetail.size(); i++) {
+            String str = "";
+            ArrayList temp = (ArrayList) bankdetail.get(i);
+            for (int j = 0; j < temp.size(); j++) {
+                str = str + temp.get(j).toString() + "#";
+
+            }
+            banks = banks + str + ",";
+        }
+
+        String bankinfo = "";
+        if (banks.length() != 0) {
+            bankinfo = defaultaccount + "," + banks;
+        }
+
+        if (bankinfo.length() == 0) {
+            bankinfo = banksinfo;
+        }
+
+        String pandetails = "";
+
+        if (!pan.equals("No pan Details")) {
+
+            pandetails = new PANValidator().isValidPAN(pan);
+
+        }
+
+        if (name.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Name Cannot be Empty");
 
         } else if (address.isEmpty()) {
@@ -1217,7 +1267,7 @@ public String validGST(String gst)
             JOptionPane.showMessageDialog(null, "Pin Code should be of 6 Digits ");
         } else if (Validator.isValidPinint(pin) == false) {
             JOptionPane.showMessageDialog(null, "Pin Code is not Valid Please Try Again");
-        }else if (state.equals("Select")) {
+        } else if (state.equals("Select")) {
             JOptionPane.showMessageDialog(null, "Please Select State");
         } else if (mob.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Mobile Number Cannot be Empty");
@@ -1225,56 +1275,44 @@ public String validGST(String gst)
             JOptionPane.showMessageDialog(null, "Mobile Number should be of 10 Digits");
         } else if (Validator.isDigitMobileno(mob) == false) {
             JOptionPane.showMessageDialog(null, "Mobile Number is not Valid Please Try Again");
-        }  
-        else if (!emailid.equals("No Email id")&&!emailid.contains("@")) {
+        } else if (!emailid.equals("No Email id") && !emailid.contains("@")) {
             JOptionPane.showMessageDialog(null, "Email ID does not contains '@' Please try Again");
 
-        } else if (!emailid.equals("No Email id")&&!emailid.contains(".")) {
+        } else if (!emailid.equals("No Email id") && !emailid.contains(".")) {
             JOptionPane.showMessageDialog(null, "Email ID does not contains '.' Please try Again");
 
         } else if (partytype.equals("Select")) {
             JOptionPane.showMessageDialog(null, "Please Select Party Type");
-        } 
-        else if (!bankinfo.equals("No Bank Info")&&defaultaccount.isEmpty()) 
-        {
+        } else if (!bankinfo.equals("No Bank Info") && defaultaccount.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Default Account Cannot be Empty");
-        }   
-       
-         else if (gstscode.equals("Select State GST Code")) 
-         {
+        }
+
+        else if (gstscode.equals("Select State GST Code")) {
             JOptionPane.showMessageDialog(null, "Please Select GST State Code");
         }
-        
-        
-       
+
         else if (cpname.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Contact Person Name Cannot be Empty");
-        }else if (cpmob.isEmpty()) {
+        } else if (cpmob.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Contact Person Mobile Number Cannot be Empty");
         } else if (cpmob.length() != 10) {
             JOptionPane.showMessageDialog(null, "Contact Person Mobile Number should be of 10 Digits");
         } else if (Validator.isDigitMobileno(cpmob) == false) {
             JOptionPane.showMessageDialog(null, "Contact Person Mobile Number is not Valid Please Try Again");
-        } 
-         else if (!gstnumber.equals("Unregistered") && !validGST(gstnumber).equals("VALID GST") )
-        {
-JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again");
+        } else if (!gstnumber.equals("Unregistered") && !validGST(gstnumber).equals("VALID GST")) {
+            JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again");
 
-        }
-        else if(!pandetails.isEmpty() )
-        {
+        } else if (!pandetails.isEmpty()) {
             System.out.println("Inside Pan Details");
-           JOptionPane.showMessageDialog(null, pandetails);
-        }
-        else 
-        {
-            
+            JOptionPane.showMessageDialog(null, pandetails);
+        } else {
 
             ManageClientDBOperation md = new ManageClientDBOperation();
-            if (md.updatePartyinfo(name, address, city, pin, state, mob, emailid, pan, gstnumber, gstscode, partytype, bankinfo, cpname, cpmob, cpemail, LoginFrame.uname, LoginFrame.date)) {
+            if (md.updatePartyinfo(name, address, city, pin, state, mob, emailid, pan, gstnumber, gstscode, partytype,
+                    bankinfo, cpname, cpmob, cpemail, LoginFrame.uname, LoginFrame.date)) {
                 JOptionPane.showMessageDialog(null, "Party Information Updated Successfully");
                 bankdetail = new ArrayList();
-                accnum=new ArrayList();
+                accnum = new ArrayList();
                 jTextField1.setText("");
                 jTextArea1.setText("");
                 jTextField4.setText("");
@@ -1297,361 +1335,314 @@ JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again"
                 jTextField19.setText("");
                 jTextField20.setText("");
                 jTextField21.setText("");
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                model.setRowCount(0);
 
-            } 
-            else 
-            {
+            } else {
                 JOptionPane.showMessageDialog(null, "Oops There is Some Error Please Try Again");
             }
 
-        
-//            System.out.println("Name: " + name);
-//            System.out.println("Adress: " + address);
-//            System.out.println("City: " + city);
-//            System.out.println("Pin: " + pin);
-//            System.out.println("State: " + state);
-//            System.out.println("Contact No: " + mob);
-//            System.out.println("Email: " + email);
-//            System.out.println("PAN No: " + pan);
-//            System.out.println("GST Number: " + gst);
-//            System.out.println("GST State Code: " + gstscode);
-//            System.out.println("Party Type: " + partytype);
-//            System.out.println("Default Bank Account: " + defaultaccount);
-//            System.out.println("Bank Details: " + bankinfo);
-//            System.out.println("Contact Person Name: " + cpname);
-//            System.out.println("Contact Person Contact Number: " + cpmob);
-//            System.out.println("Contact Person Email Id: " + cpemail);
+            // System.out.println("Name: " + name);
+            // System.out.println("Adress: " + address);
+            // System.out.println("City: " + city);
+            // System.out.println("Pin: " + pin);
+            // System.out.println("State: " + state);
+            // System.out.println("Contact No: " + mob);
+            // System.out.println("Email: " + email);
+            // System.out.println("PAN No: " + pan);
+            // System.out.println("GST Number: " + gst);
+            // System.out.println("GST State Code: " + gstscode);
+            // System.out.println("Party Type: " + partytype);
+            // System.out.println("Default Bank Account: " + defaultaccount);
+            // System.out.println("Bank Details: " + bankinfo);
+            // System.out.println("Contact Person Name: " + cpname);
+            // System.out.println("Contact Person Contact Number: " + cpmob);
+            // System.out.println("Contact Person Email Id: " + cpemail);
 
-        
         }
-    }//GEN-LAST:event_jButton9ActionPerformed
+    }// GEN-LAST:event_jButton9ActionPerformed
 
-    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
+    private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton13ActionPerformed
         // TODO add your handling code here:
-           String pname=jTextField1.getText();
-        
-            EditClientDeleteConfirmation sf = new EditClientDeleteConfirmation();
-            sf.pname=pname;
-            sf.setVisible(true);
-            sf.setSize(400, 150);
-            
+        String pname = jTextField1.getText();
 
-    }//GEN-LAST:event_jButton13ActionPerformed
+        EditClientDeleteConfirmation sf = new EditClientDeleteConfirmation();
+        sf.pname = pname;
+        sf.setVisible(true);
+        sf.setSize(400, 150);
 
-    private void jButton9KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton9KeyPressed
+    }// GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton9KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton9KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-             String name=jTextField1.getText();
-        String address=jTextArea1.getText();
-        String city=jTextField4.getText();
-        String pin=jTextField5.getText();
-        String state=(String) jComboBox1.getSelectedItem();
-        String mob=jTextField6.getText();
-        String emailid=jTextField7.getText();  
-        String partytype=(String) jComboBox5.getSelectedItem();
-        String pan=jTextField10.getText();
-        String gstnumber=jTextField11.getText();
-        String gstscode=(String) jComboBox3.getSelectedItem();
-        
-        String defaultaccount=jTextField19.getText();
-        String cpname=jTextField17.getText();
-        String cpmob=jTextField20.getText();
-        String cpemail=jTextField21.getText();
-        String banks="";
-        
-         if(emailid.length()==0&&cpemail.length()==0)
-         {
-             emailid=email;
-             cpemail=email;
-         }
-         
-         if(gstnumber.length()==0)
-         {
-           gstnumber=gst; 
-         }
-         
-          if(pan.length()==0)
-         {
-           pan="No pan Details"; 
-         }
-        
-         
-      //   System.out.println("GSTCODE: "+gstcode);
-       
-        for(int i=0;i<bankdetail.size();i++)
-         {
-              String str="";
-             ArrayList temp=(ArrayList) bankdetail.get(i);
-             for(int j=0;j<temp.size();j++)
-             {
-                 str=str+temp.get(j).toString()+"#";
-                 
-             }
-             banks=banks+str+",";
-         }
-        
-        String bankinfo="";
-        if(banks.length()!=0)
-        {
-           bankinfo= defaultaccount+ ","+banks; 
-        }
-        
-        
-        if(bankinfo.length()==0)
-        {
-            bankinfo=banksinfo;
-        }
-                
-                
-          String pandetails="";
-        
-       if(!pan.equals("No pan Details"))
-        {
- 
-              pandetails=new PANValidator().isValidPAN(pan);
-      
-        }
-            
-               
-        
-         if (name.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Name Cannot be Empty");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String name = jTextField1.getText();
+            String address = jTextArea1.getText();
+            String city = jTextField4.getText();
+            String pin = jTextField5.getText();
+            String state = (String) jComboBox1.getSelectedItem();
+            String mob = jTextField6.getText();
+            String emailid = jTextField7.getText();
+            String partytype = (String) jComboBox5.getSelectedItem();
+            String pan = jTextField10.getText();
+            String gstnumber = jTextField11.getText();
+            String gstscode = (String) jComboBox3.getSelectedItem();
 
-        } else if (address.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Address Cannot be Empty");
-        } else if (city.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "City Name Cannot be Empty");
-        } else if (pin.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Pin Code Cannot be Empty");
-        } else if (pin.length() != 6) {
-            JOptionPane.showMessageDialog(null, "Pin Code should be of 6 Digits ");
-        } else if (Validator.isValidPinint(pin) == false) {
-            JOptionPane.showMessageDialog(null, "Pin Code is not Valid Please Try Again");
-        }else if (state.equals("Select")) {
-            JOptionPane.showMessageDialog(null, "Please Select State");
-        } else if (mob.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Mobile Number Cannot be Empty");
-        } else if (mob.length() != 10) {
-            JOptionPane.showMessageDialog(null, "Mobile Number should be of 10 Digits");
-        } else if (Validator.isDigitMobileno(mob) == false) {
-            JOptionPane.showMessageDialog(null, "Mobile Number is not Valid Please Try Again");
-        }  
-        else if (!emailid.equals("No Email id")&&!emailid.contains("@")) {
-            JOptionPane.showMessageDialog(null, "Email ID does not contains '@' Please try Again");
+            String defaultaccount = jTextField19.getText();
+            String cpname = jTextField17.getText();
+            String cpmob = jTextField20.getText();
+            String cpemail = jTextField21.getText();
+            String banks = "";
 
-        } else if (!emailid.equals("No Email id")&&!emailid.contains(".")) {
-            JOptionPane.showMessageDialog(null, "Email ID does not contains '.' Please try Again");
-
-        } else if (partytype.equals("Select")) {
-            JOptionPane.showMessageDialog(null, "Please Select Party Type");
-        } 
-        else if (!bankinfo.equals("No Bank Info")&&defaultaccount.isEmpty()) 
-        {
-            JOptionPane.showMessageDialog(null, "Default Account Cannot be Empty");
-        }   
-       
-         else if (gstscode.equals("Select State GST Code")) 
-         {
-            JOptionPane.showMessageDialog(null, "Please Select GST State Code");
-        }
-        
-        
-       
-        else if (cpname.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Contact Person Name Cannot be Empty");
-        }else if (cpmob.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Contact Person Mobile Number Cannot be Empty");
-        } else if (cpmob.length() != 10) {
-            JOptionPane.showMessageDialog(null, "Contact Person Mobile Number should be of 10 Digits");
-        } else if (Validator.isDigitMobileno(cpmob) == false) {
-            JOptionPane.showMessageDialog(null, "Contact Person Mobile Number is not Valid Please Try Again");
-        } 
-         else if (!gstnumber.equals("Unregistered") && !validGST(gstnumber).equals("VALID GST") )
-        {
-JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again");
-
-        }
-        else if(!pandetails.isEmpty() )
-        {
-            System.out.println("Inside Pan Details");
-           JOptionPane.showMessageDialog(null, pandetails);
-        }
-        else 
-        {
-            
-
-            ManageClientDBOperation md = new ManageClientDBOperation();
-            if (md.updatePartyinfo(name, address, city, pin, state, mob, emailid, pan, gstnumber, gstscode, partytype, bankinfo, cpname, cpmob, cpemail, LoginFrame.uname, LoginFrame.date)) {
-                JOptionPane.showMessageDialog(null, "Party Information Updated Successfully");
-                bankdetail = new ArrayList();
-                accnum=new ArrayList();
-                jTextField1.setText("");
-                jTextArea1.setText("");
-                jTextField4.setText("");
-                jTextField5.setText("");
-                jComboBox1.setSelectedItem("Select");
-                jTextField6.setText("");
-                jTextField7.setText("");
-                jTextField10.setText("");
-                jTextField11.setText("");
-                jComboBox3.setSelectedItem("Select State GST Code");
-                jTextField12.setText("");
-                jTextField13.setText("");
-                jTextField14.setText("");
-                jComboBox4.setSelectedItem("Select");
-                jComboBox5.setSelectedItem("Select");
-                jTextField19.setText("");
-                jTextField17.setText("");
-                jCheckBox1.setSelected(false);
-                jTextField18.setText("");
-                jTextField19.setText("");
-                jTextField20.setText("");
-                jTextField21.setText("");
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-
-            } 
-            else 
-            {
-                JOptionPane.showMessageDialog(null, "Oops There is Some Error Please Try Again");
+            if (emailid.length() == 0 && cpemail.length() == 0) {
+                emailid = email;
+                cpemail = email;
             }
 
-        
-//            System.out.println("Name: " + name);
-//            System.out.println("Adress: " + address);
-//            System.out.println("City: " + city);
-//            System.out.println("Pin: " + pin);
-//            System.out.println("State: " + state);
-//            System.out.println("Contact No: " + mob);
-//            System.out.println("Email: " + email);
-//            System.out.println("PAN No: " + pan);
-//            System.out.println("GST Number: " + gst);
-//            System.out.println("GST State Code: " + gstscode);
-//            System.out.println("Party Type: " + partytype);
-//            System.out.println("Default Bank Account: " + defaultaccount);
-//            System.out.println("Bank Details: " + bankinfo);
-//            System.out.println("Contact Person Name: " + cpname);
-//            System.out.println("Contact Person Contact Number: " + cpmob);
-//            System.out.println("Contact Person Email Id: " + cpemail);
+            if (gstnumber.length() == 0) {
+                gstnumber = gst;
+            }
 
-        
-        }
-          
-        }
-    }//GEN-LAST:event_jButton9KeyPressed
+            if (pan.length() == 0) {
+                pan = "No pan Details";
+            }
 
-    private void jTextArea1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextArea1KeyPressed
+            // System.out.println("GSTCODE: "+gstcode);
+
+            for (int i = 0; i < bankdetail.size(); i++) {
+                String str = "";
+                ArrayList temp = (ArrayList) bankdetail.get(i);
+                for (int j = 0; j < temp.size(); j++) {
+                    str = str + temp.get(j).toString() + "#";
+
+                }
+                banks = banks + str + ",";
+            }
+
+            String bankinfo = "";
+            if (banks.length() != 0) {
+                bankinfo = defaultaccount + "," + banks;
+            }
+
+            if (bankinfo.length() == 0) {
+                bankinfo = banksinfo;
+            }
+
+            String pandetails = "";
+
+            if (!pan.equals("No pan Details")) {
+
+                pandetails = new PANValidator().isValidPAN(pan);
+
+            }
+
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Name Cannot be Empty");
+
+            } else if (address.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Address Cannot be Empty");
+            } else if (city.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "City Name Cannot be Empty");
+            } else if (pin.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Pin Code Cannot be Empty");
+            } else if (pin.length() != 6) {
+                JOptionPane.showMessageDialog(null, "Pin Code should be of 6 Digits ");
+            } else if (Validator.isValidPinint(pin) == false) {
+                JOptionPane.showMessageDialog(null, "Pin Code is not Valid Please Try Again");
+            } else if (state.equals("Select")) {
+                JOptionPane.showMessageDialog(null, "Please Select State");
+            } else if (mob.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Mobile Number Cannot be Empty");
+            } else if (mob.length() != 10) {
+                JOptionPane.showMessageDialog(null, "Mobile Number should be of 10 Digits");
+            } else if (Validator.isDigitMobileno(mob) == false) {
+                JOptionPane.showMessageDialog(null, "Mobile Number is not Valid Please Try Again");
+            } else if (!emailid.equals("No Email id") && !emailid.contains("@")) {
+                JOptionPane.showMessageDialog(null, "Email ID does not contains '@' Please try Again");
+
+            } else if (!emailid.equals("No Email id") && !emailid.contains(".")) {
+                JOptionPane.showMessageDialog(null, "Email ID does not contains '.' Please try Again");
+
+            } else if (partytype.equals("Select")) {
+                JOptionPane.showMessageDialog(null, "Please Select Party Type");
+            } else if (!bankinfo.equals("No Bank Info") && defaultaccount.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Default Account Cannot be Empty");
+            }
+
+            else if (gstscode.equals("Select State GST Code")) {
+                JOptionPane.showMessageDialog(null, "Please Select GST State Code");
+            }
+
+            else if (cpname.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Contact Person Name Cannot be Empty");
+            } else if (cpmob.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Contact Person Mobile Number Cannot be Empty");
+            } else if (cpmob.length() != 10) {
+                JOptionPane.showMessageDialog(null, "Contact Person Mobile Number should be of 10 Digits");
+            } else if (Validator.isDigitMobileno(cpmob) == false) {
+                JOptionPane.showMessageDialog(null, "Contact Person Mobile Number is not Valid Please Try Again");
+            } else if (!gstnumber.equals("Unregistered") && !validGST(gstnumber).equals("VALID GST")) {
+                JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again");
+
+            } else if (!pandetails.isEmpty()) {
+                System.out.println("Inside Pan Details");
+                JOptionPane.showMessageDialog(null, pandetails);
+            } else {
+
+                ManageClientDBOperation md = new ManageClientDBOperation();
+                if (md.updatePartyinfo(name, address, city, pin, state, mob, emailid, pan, gstnumber, gstscode,
+                        partytype, bankinfo, cpname, cpmob, cpemail, LoginFrame.uname, LoginFrame.date)) {
+                    JOptionPane.showMessageDialog(null, "Party Information Updated Successfully");
+                    bankdetail = new ArrayList();
+                    accnum = new ArrayList();
+                    jTextField1.setText("");
+                    jTextArea1.setText("");
+                    jTextField4.setText("");
+                    jTextField5.setText("");
+                    jComboBox1.setSelectedItem("Select");
+                    jTextField6.setText("");
+                    jTextField7.setText("");
+                    jTextField10.setText("");
+                    jTextField11.setText("");
+                    jComboBox3.setSelectedItem("Select State GST Code");
+                    jTextField12.setText("");
+                    jTextField13.setText("");
+                    jTextField14.setText("");
+                    jComboBox4.setSelectedItem("Select");
+                    jComboBox5.setSelectedItem("Select");
+                    jTextField19.setText("");
+                    jTextField17.setText("");
+                    jCheckBox1.setSelected(false);
+                    jTextField18.setText("");
+                    jTextField19.setText("");
+                    jTextField20.setText("");
+                    jTextField21.setText("");
+                    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+                    model.setRowCount(0);
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Oops There is Some Error Please Try Again");
+                }
+
+                // System.out.println("Name: " + name);
+                // System.out.println("Adress: " + address);
+                // System.out.println("City: " + city);
+                // System.out.println("Pin: " + pin);
+                // System.out.println("State: " + state);
+                // System.out.println("Contact No: " + mob);
+                // System.out.println("Email: " + email);
+                // System.out.println("PAN No: " + pan);
+                // System.out.println("GST Number: " + gst);
+                // System.out.println("GST State Code: " + gstscode);
+                // System.out.println("Party Type: " + partytype);
+                // System.out.println("Default Bank Account: " + defaultaccount);
+                // System.out.println("Bank Details: " + bankinfo);
+                // System.out.println("Contact Person Name: " + cpname);
+                // System.out.println("Contact Person Contact Number: " + cpmob);
+                // System.out.println("Contact Person Email Id: " + cpemail);
+
+            }
+
+        }
+    }// GEN-LAST:event_jButton9KeyPressed
+
+    private void jTextArea1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextArea1KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             if (evt.getModifiers() > 0) {
-                        jTextArea1.transferFocusBackward();
-                    } else {
-                        jTextArea1.transferFocus();
-                    }
-                    evt.consume();
+                jTextArea1.transferFocusBackward();
+            } else {
+                jTextArea1.transferFocus();
+            }
+            evt.consume();
         }
-    }//GEN-LAST:event_jTextArea1KeyPressed
+    }// GEN-LAST:event_jTextArea1KeyPressed
 
-    private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox1KeyPressed
+    private void jComboBox1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jComboBox1KeyPressed
         // TODO add your handling code here:
-         jComboBox1.showPopup();
-         String text=(String) jComboBox1.getSelectedItem();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        jComboBox1.showPopup();
+        String text = (String) jComboBox1.getSelectedItem();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             jComboBox1.setSelectedItem(text);
         }
-    }//GEN-LAST:event_jComboBox1KeyPressed
+    }// GEN-LAST:event_jComboBox1KeyPressed
 
-    private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField10KeyReleased
+    private void jTextField10KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField10KeyReleased
         // TODO add your handling code here:
 
-        String pan=jTextField10.getText();
-        pan=pan.toUpperCase();
+        String pan = jTextField10.getText();
+        pan = pan.toUpperCase();
         jTextField10.setText(pan);
 
-    }//GEN-LAST:event_jTextField10KeyReleased
+    }// GEN-LAST:event_jTextField10KeyReleased
 
-    private void jTextField11KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyPressed
+    private void jTextField11KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField11KeyPressed
         // TODO add your handling code here:st=
 
         String gst = jTextField11.getText();
 
-        String substr1="" ;
+        String substr1 = "";
         gst = gst.trim();
 
         String scode = "";
 
-        if (gst.length()>2)
-        {
+        if (gst.length() > 2) {
             substr1 = gst.substring(0, 2);
         }
-        substr1=substr1.trim();
-        //  System.out.println("GST 1: " + substr1);
+        substr1 = substr1.trim();
+        // System.out.println("GST 1: " + substr1);
 
         ArrayList statecode = new GSTStateCode().getStateCode();
-        for (int i = 0; i < statecode.size(); i++)
-        {
+        for (int i = 0; i < statecode.size(); i++) {
             String str = (String) statecode.get(i);
             String substr2 = str.substring(0, 2);
-            substr2=substr2.trim();
-            //  System.out.println("GST 1: " + substr1);
-            //  System.out.println("GST 2: " + substr2);
-            if (substr2.equals(substr1))
-            {
+            substr2 = substr2.trim();
+            // System.out.println("GST 1: " + substr1);
+            // System.out.println("GST 2: " + substr2);
+            if (substr2.equals(substr1)) {
                 scode = str;
                 break;
             }
         }
         jComboBox3.setSelectedItem(scode);
 
-        //  System.out.println(state);
-        //        jComboBox3.setSelectedItem(substr.startsWith(substr));
+        // System.out.println(state);
+        // jComboBox3.setSelectedItem(substr.startsWith(substr));
 
-    }//GEN-LAST:event_jTextField11KeyPressed
+    }// GEN-LAST:event_jTextField11KeyPressed
 
-    private void jTextField11KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField11KeyReleased
+    private void jTextField11KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField11KeyReleased
         // TODO add your handling code here:
 
-        String gst=jTextField11.getText();
-        gst=gst.toUpperCase();
+        String gst = jTextField11.getText();
+        gst = gst.toUpperCase();
         jTextField11.setText(gst);
-        String pan="";
-        if(gst.length()>=15)
-        {
-            String ngst=gst.substring(0,15);
-             pan=ngst.substring(2, 12);
-              jTextField11.setText(ngst);
+        String pan = "";
+        if (gst.length() >= 15) {
+            String ngst = gst.substring(0, 15);
+            pan = ngst.substring(2, 12);
+            jTextField11.setText(ngst);
             jTextField10.setText(pan);
         }
-        
-       
-    }//GEN-LAST:event_jTextField11KeyReleased
 
-    private void jComboBox3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox3KeyPressed
+    }// GEN-LAST:event_jTextField11KeyReleased
+
+    private void jComboBox3KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jComboBox3KeyPressed
         // TODO add your handling code here:
         jComboBox3.showPopup();
-        String text=(String) jComboBox3.getSelectedItem();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        String text = (String) jComboBox3.getSelectedItem();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             jComboBox3.setSelectedItem(text);
         }
 
-    }//GEN-LAST:event_jComboBox3KeyPressed
+    }// GEN-LAST:event_jComboBox3KeyPressed
 
-    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox5ActionPerformed
+    private void jComboBox5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox5ActionPerformed
         // TODO add your handling code here:
 
-        String partytype=(String) jComboBox5.getSelectedItem();
+        String partytype = (String) jComboBox5.getSelectedItem();
 
-      
-        
-       
-        if(partytype.equals("Unregistered"))
-        {
+        if (partytype.equals("Unregistered")) {
             jTextField10.setEditable(true);
             jTextField11.setEditable(false);
             jTextField10.setBackground(Color.WHITE);
@@ -1659,172 +1650,154 @@ JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again"
             jTextField11.setText("");
             jComboBox3.setSelectedIndex(0);
             jTextField10.setText("");
-            gst="Unregistered";
-            gst=gst.trim();
+            gst = "Unregistered";
+            gst = gst.trim();
         }
-        
-        else if(partytype.equals("Registered Business-Regular"))
-        {
-            jTextField10.setEditable(false);
-            jTextField10.setBackground(Color.lightGray);
-            jTextField11.setEditable(true);
-            jTextField11.setText("");   
-            jTextField10.setText("");
-             jComboBox3.setSelectedIndex(0);
-             jTextField11.setBackground(Color.WHITE);
-        }
-        else if(partytype.equals("Registered Business-Composition"))
-        {
+
+        else if (partytype.equals("Registered Business-Regular")) {
             jTextField10.setEditable(false);
             jTextField10.setBackground(Color.lightGray);
             jTextField11.setEditable(true);
             jTextField11.setText("");
             jTextField10.setText("");
-             jComboBox3.setSelectedIndex(0);
-             jTextField11.setBackground(Color.WHITE);
+            jComboBox3.setSelectedIndex(0);
+            jTextField11.setBackground(Color.WHITE);
+        } else if (partytype.equals("Registered Business-Composition")) {
+            jTextField10.setEditable(false);
+            jTextField10.setBackground(Color.lightGray);
+            jTextField11.setEditable(true);
+            jTextField11.setText("");
+            jTextField10.setText("");
+            jComboBox3.setSelectedIndex(0);
+            jTextField11.setBackground(Color.WHITE);
         }
-        
 
-    }//GEN-LAST:event_jComboBox5ActionPerformed
+    }// GEN-LAST:event_jComboBox5ActionPerformed
 
-    private void jComboBox5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox5KeyPressed
+    private void jComboBox5KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jComboBox5KeyPressed
         // TODO add your handling code here:
 
         jComboBox5.showPopup();
-        String partytype=(String) jComboBox5.getSelectedItem();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        String partytype = (String) jComboBox5.getSelectedItem();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             jComboBox5.setSelectedItem(partytype);
 
-           
-        
-       
-        if(partytype.equals("Unregistered"))
-        {
-            jTextField10.setEditable(true);
-            jTextField11.setEditable(false);
-            jTextField10.setBackground(Color.WHITE);
-            jTextField11.setBackground(Color.lightGray);
-            jTextField11.setText("");
-            jComboBox3.setSelectedIndex(0);
-            jTextField10.setText("");
-            gst="Unregistered";
-            gst=gst.trim();
-        }
-        
-        else if(partytype.equals("Registered Business-Regular"))
-        {
-            jTextField10.setEditable(false);
-            jTextField10.setBackground(Color.lightGray);
-            jTextField11.setEditable(true);
-            jTextField11.setText("");   
-            jTextField10.setText("");
-             jComboBox3.setSelectedIndex(0);
-             jTextField11.setBackground(Color.WHITE);
-        }
-        else if(partytype.equals("Registered Business-Composition"))
-        {
-            jTextField10.setEditable(false);
-            jTextField10.setBackground(Color.lightGray);
-            jTextField11.setEditable(true);
-            jTextField11.setText("");
-            jTextField10.setText("");
-             jComboBox3.setSelectedIndex(0);
-             jTextField11.setBackground(Color.WHITE);
-        }
-        
-        }
-    }//GEN-LAST:event_jComboBox5KeyPressed
+            if (partytype.equals("Unregistered")) {
+                jTextField10.setEditable(true);
+                jTextField11.setEditable(false);
+                jTextField10.setBackground(Color.WHITE);
+                jTextField11.setBackground(Color.lightGray);
+                jTextField11.setText("");
+                jComboBox3.setSelectedIndex(0);
+                jTextField10.setText("");
+                gst = "Unregistered";
+                gst = gst.trim();
+            }
 
-    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox4ActionPerformed
+            else if (partytype.equals("Registered Business-Regular")) {
+                jTextField10.setEditable(false);
+                jTextField10.setBackground(Color.lightGray);
+                jTextField11.setEditable(true);
+                jTextField11.setText("");
+                jTextField10.setText("");
+                jComboBox3.setSelectedIndex(0);
+                jTextField11.setBackground(Color.WHITE);
+            } else if (partytype.equals("Registered Business-Composition")) {
+                jTextField10.setEditable(false);
+                jTextField10.setBackground(Color.lightGray);
+                jTextField11.setEditable(true);
+                jTextField11.setText("");
+                jTextField10.setText("");
+                jComboBox3.setSelectedIndex(0);
+                jTextField11.setBackground(Color.WHITE);
+            }
+
+        }
+    }// GEN-LAST:event_jComboBox5KeyPressed
+
+    private void jComboBox4ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jComboBox4ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox4ActionPerformed
+    }// GEN-LAST:event_jComboBox4ActionPerformed
 
-    private void jComboBox4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jComboBox4KeyPressed
+    private void jComboBox4KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jComboBox4KeyPressed
         // TODO add your handling code here:
         jComboBox4.showPopup();
-        String text=(String) jComboBox4.getSelectedItem();
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER)
-        {
+        String text = (String) jComboBox4.getSelectedItem();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             jComboBox4.setSelectedItem(text);
         }
 
-    }//GEN-LAST:event_jComboBox4KeyPressed
+    }// GEN-LAST:event_jComboBox4KeyPressed
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         int row = jTable1.getSelectedRow();
         int col = jTable1.getSelectedColumn();
-       
-        if(col!=-1&& row!=-1)
-        {
 
-       // if (col == 1) 
-        {
+        if (col != -1 && row != -1) {
 
-            String accname = (String) jTable1.getValueAt(row, 1);
-            jTextField19.setText(accname);
-        }
+            // if (col == 1)
+            {
 
-        String bname=(String) jTable1.getValueAt(row, 0);
-        String accnum=(String) jTable1.getValueAt(row, 1);
-        String ifsc=(String) jTable1.getValueAt(row, 2);
-        String accname=(String) jTable1.getValueAt(row, 3);
-        String acctype=(String) jTable1.getValueAt(row, 4);
-        if(bname.length()!=0&&accnum.length()!=0&&ifsc.length()!=0&&accname.length()!=0&&acctype.length()!=0)
-        {
-            jTextField12.setText(bname);
-        jTextField13.setText(accnum);
-        jTextField14.setText(ifsc);
-        jTextField18.setText(accname);
-        jComboBox4.setSelectedItem(acctype);
-       
-            
-        }
-        }
-           javax.swing.ToolTipManager.sharedInstance().setInitialDelay(1);
-            
-        String str=(String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
-       // System.out.println("Tool Tip Text is "+str);
-        jTable1.setToolTipText(str);
-
-        //  System.out.println (accname);
-
-    }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
-        // TODO add your handling code here:
-         int row = jTable1.getSelectedRow();
-        int col = jTable1.getSelectedColumn();
-       
-        if(col!=-1&& row!=-1)
-        {
-
-        if (col == 1) 
-        {
-
-            String accname = (String) jTable1.getValueAt(row, 1);
-            if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                String accname = (String) jTable1.getValueAt(row, 1);
                 jTextField19.setText(accname);
             }
-        }
 
-        String bname=(String) jTable1.getValueAt(row, 0);
-        String accnum=(String) jTable1.getValueAt(row, 1);
-        String ifsc=(String) jTable1.getValueAt(row, 2);
-        String accname=(String) jTable1.getValueAt(row, 3);
-        String acctype=(String) jTable1.getValueAt(row, 4);
-        if(bname.length()!=0&&accnum.length()!=0&&ifsc.length()!=0&&accname.length()!=0&&acctype.length()!=0)
-        {
-            jTextField12.setText(bname);
-            jTextField13.setText(accnum);
-            jTextField14.setText(ifsc);
-            jTextField18.setText(accname);
-            jComboBox4.setSelectedItem(acctype);
-            
+            String bname = (String) jTable1.getValueAt(row, 0);
+            String accnum = (String) jTable1.getValueAt(row, 1);
+            String ifsc = (String) jTable1.getValueAt(row, 2);
+            String accname = (String) jTable1.getValueAt(row, 3);
+            String acctype = (String) jTable1.getValueAt(row, 4);
+            if (bname.length() != 0 && accnum.length() != 0 && ifsc.length() != 0 && accname.length() != 0
+                    && acctype.length() != 0) {
+                jTextField12.setText(bname);
+                jTextField13.setText(accnum);
+                jTextField14.setText(ifsc);
+                jTextField18.setText(accname);
+                jComboBox4.setSelectedItem(acctype);
+
+            }
         }
+        javax.swing.ToolTipManager.sharedInstance().setInitialDelay(1);
+
+        String str = (String) jTable1.getValueAt(jTable1.getSelectedRow(), jTable1.getSelectedColumn());
+        // System.out.println("Tool Tip Text is "+str);
+        jTable1.setToolTipText(str);
+
+        // System.out.println (accname);
+
+    }// GEN-LAST:event_jTable1MouseClicked
+
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTable1KeyPressed
+        // TODO add your handling code here:
+        int row = jTable1.getSelectedRow();
+        int col = jTable1.getSelectedColumn();
+
+        if (col != -1 && row != -1) {
+
+            if (col == 1) {
+
+                String accname = (String) jTable1.getValueAt(row, 1);
+                if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                    jTextField19.setText(accname);
+                }
+            }
+
+            String bname = (String) jTable1.getValueAt(row, 0);
+            String accnum = (String) jTable1.getValueAt(row, 1);
+            String ifsc = (String) jTable1.getValueAt(row, 2);
+            String accname = (String) jTable1.getValueAt(row, 3);
+            String acctype = (String) jTable1.getValueAt(row, 4);
+            if (bname.length() != 0 && accnum.length() != 0 && ifsc.length() != 0 && accname.length() != 0
+                    && acctype.length() != 0) {
+                jTextField12.setText(bname);
+                jTextField13.setText(accnum);
+                jTextField14.setText(ifsc);
+                jTextField18.setText(accname);
+                jComboBox4.setSelectedItem(acctype);
+
+            }
         }
-        
 
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             if (evt.getModifiers() > 0) {
@@ -1835,11 +1808,9 @@ JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again"
             evt.consume();
         }
 
+    }// GEN-LAST:event_jTable1KeyPressed
 
-        
-    }//GEN-LAST:event_jTable1KeyPressed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
 
         String bankname = jTextField12.getText();
@@ -1847,19 +1818,16 @@ JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again"
         String ifsccode = jTextField14.getText();
         String accname = jTextField18.getText();
         String acctype = (String) jComboBox4.getSelectedItem();
- String result1=new IFSCValidator().isValidIFSC(ifsccode);
+        String result1 = new IFSCValidator().isValidIFSC(ifsccode);
         if (bankname.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Bank Name Cannot be Empty");
         } else if (accountnum.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Account Number Cannot be Empty");
         } else if (Validator.isValidAccNumber(accountnum) == false) {
             JOptionPane.showMessageDialog(null, "Account Number is not valid");
-        }
-        else if(!result1.isEmpty())
-        {
-             JOptionPane.showMessageDialog(null, result1);
-        }
-        else if (accname.isEmpty()) {
+        } else if (!result1.isEmpty()) {
+            JOptionPane.showMessageDialog(null, result1);
+        } else if (accname.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Account Name Cannot be Empty");
         } else if (acctype.equals("Select")) {
             JOptionPane.showMessageDialog(null, "Please Select Account Type");
@@ -1873,16 +1841,15 @@ JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again"
             bankinfo.add(accname);
             bankinfo.add(acctype);
 
-            System.out.println("accnum : "+accnum);
-            System.out.println("bankdetails : "+bankdetail);
-            
+            System.out.println("accnum : " + accnum);
+            System.out.println("bankdetails : " + bankdetail);
+
             System.out.println("==========================================\n");
-            if (!accnum.contains(accountnum)) 
-            {
+            if (!accnum.contains(accountnum)) {
                 bankdetail.add(bankinfo);
                 accnum.add(accountnum);
 
-                //    System.out.println("Bank Details: "+bankdetails);  
+                // System.out.println("Bank Details: "+bankdetails);
                 int rowheight = 30;
                 int columncount = jTable1.getColumnCount();
                 InsertDataToTable it = new InsertDataToTable();
@@ -1899,217 +1866,191 @@ JOptionPane.showMessageDialog(null, "GSTIN Number is not Valid Please Try Again"
 
         }
 
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }// GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton5KeyPressed
+    private void jButton5KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton5KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-                 String bankname = jTextField12.getText();
-        String accountnum = jTextField13.getText();
-        String ifsccode = jTextField14.getText();
-        String accname = jTextField18.getText();
-        String acctype = (String) jComboBox4.getSelectedItem();
-String result1=new IFSCValidator().isValidIFSC(ifsccode);
-        if (bankname.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null, "Bank Name Cannot be Empty");
-        }
-        else if (accountnum.isEmpty())
-        {
-            JOptionPane.showMessageDialog(null, "Account Number Cannot be Empty");
-        } 
-        else if (Validator.isValidAccNumber(accountnum) == false)
-        {
-            JOptionPane.showMessageDialog(null, "Account Number is not valid");
-        }
-         else if(!result1.isEmpty())
-        {
-             JOptionPane.showMessageDialog(null, result1);
-        }
-        else if (accname.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Account Name Cannot be Empty");
-        } else if (acctype.equals("Select")) {
-            JOptionPane.showMessageDialog(null, "Please Select Account Type");
-        } else {
-
-            ArrayList bankinfo = new ArrayList();
-
-            bankinfo.add(bankname);
-            bankinfo.add(accountnum);
-            bankinfo.add(ifsccode);
-            bankinfo.add(accname);
-            bankinfo.add(acctype);
-
-            System.out.println("accnum : "+accnum);
-            System.out.println("bankdetails : "+bankdetail);
-            
-            System.out.println("==========================================\n");
-            if (!accnum.contains(accountnum)) 
-            {
-                bankdetail.add(bankinfo);
-                accnum.add(accountnum);
-
-                //    System.out.println("Bank Details: "+bankdetails);  
-                int rowheight = 30;
-                int columncount = jTable1.getColumnCount();
-                InsertDataToTable it = new InsertDataToTable();
-                it.getDataInserted(jTable1, columncount, bankdetail, rowheight);
-                jTextField12.setText("");
-                jTextField13.setText("");
-                jTextField14.setText("");
-                jTextField18.setText("");
-                jComboBox4.setSelectedItem("Select");
-
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String bankname = jTextField12.getText();
+            String accountnum = jTextField13.getText();
+            String ifsccode = jTextField14.getText();
+            String accname = jTextField18.getText();
+            String acctype = (String) jComboBox4.getSelectedItem();
+            String result1 = new IFSCValidator().isValidIFSC(ifsccode);
+            if (bankname.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Bank Name Cannot be Empty");
+            } else if (accountnum.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Account Number Cannot be Empty");
+            } else if (Validator.isValidAccNumber(accountnum) == false) {
+                JOptionPane.showMessageDialog(null, "Account Number is not valid");
+            } else if (!result1.isEmpty()) {
+                JOptionPane.showMessageDialog(null, result1);
+            } else if (accname.isEmpty()) {
+                JOptionPane.showMessageDialog(null, "Account Name Cannot be Empty");
+            } else if (acctype.equals("Select")) {
+                JOptionPane.showMessageDialog(null, "Please Select Account Type");
             } else {
-                JOptionPane.showMessageDialog(null, "Account number Already Existed !");
+
+                ArrayList bankinfo = new ArrayList();
+
+                bankinfo.add(bankname);
+                bankinfo.add(accountnum);
+                bankinfo.add(ifsccode);
+                bankinfo.add(accname);
+                bankinfo.add(acctype);
+
+                System.out.println("accnum : " + accnum);
+                System.out.println("bankdetails : " + bankdetail);
+
+                System.out.println("==========================================\n");
+                if (!accnum.contains(accountnum)) {
+                    bankdetail.add(bankinfo);
+                    accnum.add(accountnum);
+
+                    // System.out.println("Bank Details: "+bankdetails);
+                    int rowheight = 30;
+                    int columncount = jTable1.getColumnCount();
+                    InsertDataToTable it = new InsertDataToTable();
+                    it.getDataInserted(jTable1, columncount, bankdetail, rowheight);
+                    jTextField12.setText("");
+                    jTextField13.setText("");
+                    jTextField14.setText("");
+                    jTextField18.setText("");
+                    jComboBox4.setSelectedItem("Select");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Account number Already Existed !");
+                }
+
             }
 
         }
+    }// GEN-LAST:event_jButton5KeyPressed
 
-        }
-    }//GEN-LAST:event_jButton5KeyPressed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
 
-        dbankacc=jTextField19.getText();
-        if(dbankacc.isEmpty())
-        JOptionPane.showMessageDialog(null, "Default Bank Account Cannot be Empty");
-    }//GEN-LAST:event_jButton6ActionPerformed
-
-    private void jButton6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton6KeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-            dbankacc=jTextField19.getText();
-            if(dbankacc.isEmpty())
+        dbankacc = jTextField19.getText();
+        if (dbankacc.isEmpty())
             JOptionPane.showMessageDialog(null, "Default Bank Account Cannot be Empty");
-        }
-    }//GEN-LAST:event_jButton6KeyPressed
+    }// GEN-LAST:event_jButton6ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+    private void jButton6KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton6KeyPressed
         // TODO add your handling code here:
-       
-        int row=jTable1.getSelectedRow();
-        System.out.println("Row is "+row);
-         if(row!=-1)
-         {
-              System.out.println("accnum : "+accnum);
-            System.out.println("bankdetails : "+bankdetail);
-            
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            dbankacc = jTextField19.getText();
+            if (dbankacc.isEmpty())
+                JOptionPane.showMessageDialog(null, "Default Bank Account Cannot be Empty");
+        }
+    }// GEN-LAST:event_jButton6KeyPressed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+
+        int row = jTable1.getSelectedRow();
+        System.out.println("Row is " + row);
+        if (row != -1) {
+            System.out.println("accnum : " + accnum);
+            System.out.println("bankdetails : " + bankdetail);
+
             System.out.println("==========================================\n");
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-       
-       String accountno=(String) jTable1.getValueAt(row, 1);
-        accnum.remove(accountno);
-       int index=-1;
-             System.out.println("Account Number 1: "+accountno);
-        for (int i = 0; i <  bankdetail.size(); i++)
-        {
-            ArrayList temp=(ArrayList)bankdetail.get(i);
-            String acn=(String)temp.get(1);
-             System.out.println("ACN: "+acn);
-            if(acn.equals(accountno))
-            {
-                index=i;
-                break;
-                
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            String accountno = (String) jTable1.getValueAt(row, 1);
+            accnum.remove(accountno);
+            int index = -1;
+            System.out.println("Account Number 1: " + accountno);
+            for (int i = 0; i < bankdetail.size(); i++) {
+                ArrayList temp = (ArrayList) bankdetail.get(i);
+                String acn = (String) temp.get(1);
+                System.out.println("ACN: " + acn);
+                if (acn.equals(accountno)) {
+                    index = i;
+                    break;
+
+                }
+            }
+            System.out.println("Index: " + index);
+            bankdetail.remove(index);
+
+            model.removeRow(row);
+
+            jTextField12.setText("");
+            jTextField13.setText("");
+            jTextField14.setText("");
+            jTextField18.setText("");
+            jTextField19.setText("");
+            jComboBox4.setSelectedItem("Select");
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Select a row to be Delete");
+        }
+    }// GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton7KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton7KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int row = jTable1.getSelectedRow();
+            System.out.println("Row is " + row);
+            if (row != -1) {
+                System.out.println("accnum : " + accnum);
+                System.out.println("bankdetails : " + bankdetail);
+
+                System.out.println("==========================================\n");
+                DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+                String accountno = (String) jTable1.getValueAt(row, 1);
+                accnum.remove(accountno);
+                int index = -1;
+                System.out.println("Account Number 1: " + accountno);
+                for (int i = 0; i < bankdetail.size(); i++) {
+                    ArrayList temp = (ArrayList) bankdetail.get(i);
+                    String acn = (String) temp.get(1);
+                    System.out.println("ACN: " + acn);
+                    if (acn.equals(accountno)) {
+                        index = i;
+                        break;
+
+                    }
+                }
+                System.out.println("Index: " + index);
+                bankdetail.remove(index);
+
+                model.removeRow(row);
+            } else {
+                JOptionPane.showMessageDialog(null, "Please Select a row to be Delete");
             }
         }
-             System.out.println("Index: "+index);
-        bankdetail.remove(index);
-         
-       model.removeRow(row);
-       
-       
-       jTextField12.setText("");
-       jTextField13.setText("");
-       jTextField14.setText("");
-       jTextField18.setText("");
-         jTextField19.setText("");
-       jComboBox4.setSelectedItem("Select");
-         }
-         else
-         {
-             JOptionPane.showMessageDialog(null, "Please Select a row to be Delete");
-         }
-    }//GEN-LAST:event_jButton7ActionPerformed
+    }// GEN-LAST:event_jButton7KeyPressed
 
-    private void jButton7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton7KeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-            int row=jTable1.getSelectedRow();
-        System.out.println("Row is "+row);
-         if(row!=-1)
-         {
-              System.out.println("accnum : "+accnum);
-            System.out.println("bankdetails : "+bankdetail);
-            
-            System.out.println("==========================================\n");
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-       
-       String accountno=(String) jTable1.getValueAt(row, 1);
-        accnum.remove(accountno);
-       int index=-1;
-             System.out.println("Account Number 1: "+accountno);
-        for (int i = 0; i <  bankdetail.size(); i++)
-        {
-            ArrayList temp=(ArrayList)bankdetail.get(i);
-            String acn=(String)temp.get(1);
-             System.out.println("ACN: "+acn);
-            if(acn.equals(accountno))
-            {
-                index=i;
-                break;
-                
-            }
-        }
-             System.out.println("Index: "+index);
-        bankdetail.remove(index);
-         
-       model.removeRow(row);
-         }
-         else
-         {
-             JOptionPane.showMessageDialog(null, "Please Select a row to be Delete");
-         }
-        }
-    }//GEN-LAST:event_jButton7KeyPressed
-
-    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox1ActionPerformed
+    private void jCheckBox1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jCheckBox1ActionPerformed
         // TODO add your handling code here:
         jCheckBox1.setSelected(true);
 
-        String name=jTextField1.getText();
-        String mob=jTextField6.getText();
-        String emailid=jTextField7.getText();
+        String name = jTextField1.getText();
+        String mob = jTextField6.getText();
+        String emailid = jTextField7.getText();
 
-       
         jTextField17.setText(name);
         jTextField20.setText(mob);
         jTextField21.setText(emailid);
-    }//GEN-LAST:event_jCheckBox1ActionPerformed
+    }// GEN-LAST:event_jCheckBox1ActionPerformed
 
-    private void jCheckBox1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jCheckBox1KeyPressed
+    private void jCheckBox1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jCheckBox1KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             jCheckBox1.setSelected(true);
 
-             String name=jTextField1.getText();
-        String mob=jTextField6.getText();
-        String emailid=jTextField7.getText();
+            String name = jTextField1.getText();
+            String mob = jTextField6.getText();
+            String emailid = jTextField7.getText();
 
-       
-        jTextField17.setText(name);
-        jTextField20.setText(mob);
-        jTextField21.setText(emailid);
+            jTextField17.setText(name);
+            jTextField20.setText(mob);
+            jTextField21.setText(emailid);
         }
-    }//GEN-LAST:event_jCheckBox1KeyPressed
+    }// GEN-LAST:event_jCheckBox1KeyPressed
 
-    private void jButton13KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton13KeyPressed
+    private void jButton13KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton13KeyPressed
         // TODO add your handling code here:
         String pname = jTextField1.getText();
 
@@ -2117,267 +2058,267 @@ String result1=new IFSCValidator().isValidIFSC(ifsccode);
         sf.pname = pname;
         sf.setVisible(true);
         sf.setSize(400, 150);
-    }//GEN-LAST:event_jButton13KeyPressed
+    }// GEN-LAST:event_jButton13KeyPressed
 
-    private void jTextField14KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField14KeyReleased
+    private void jTextField14KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField14KeyReleased
         // TODO add your handling code here:
-         String ifsc=jTextField14.getText();
-        ifsc=ifsc.toUpperCase();
-         jTextField14.setText(ifsc);
-    }//GEN-LAST:event_jTextField14KeyReleased
+        String ifsc = jTextField14.getText();
+        ifsc = ifsc.toUpperCase();
+        jTextField14.setText(ifsc);
+    }// GEN-LAST:event_jTextField14KeyReleased
 
-    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusGained
+    private void jTextField1FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField1FocusGained
         // TODO add your handling code here:
         Color clr = new Color(51, 161, 222);
         jTextField1.setBorder(new LineBorder(clr, 2));
 
-    }//GEN-LAST:event_jTextField1FocusGained
+    }// GEN-LAST:event_jTextField1FocusGained
 
-    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField1FocusLost
+    private void jTextField1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField1FocusLost
         // TODO add your handling code here:
         jTextField1.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField1FocusLost
+    }// GEN-LAST:event_jTextField1FocusLost
 
-    private void jTextArea1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusGained
+    private void jTextArea1FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextArea1FocusGained
         // TODO add your handling code here:
         Color clr = new Color(51, 161, 222);
         jTextArea1.setBorder(new LineBorder(clr, 1));
-    }//GEN-LAST:event_jTextArea1FocusGained
+    }// GEN-LAST:event_jTextArea1FocusGained
 
-    private void jTextArea1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextArea1FocusLost
+    private void jTextArea1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextArea1FocusLost
         // TODO add your handling code here:
         jTextArea1.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextArea1FocusLost
+    }// GEN-LAST:event_jTextArea1FocusLost
 
-    private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusGained
+    private void jTextField4FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField4FocusGained
         // TODO add your handling code here:
         Color clr = new Color(51, 161, 222);
         jTextField4.setBorder(new LineBorder(clr, 2));
-    }//GEN-LAST:event_jTextField4FocusGained
+    }// GEN-LAST:event_jTextField4FocusGained
 
-    private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField4FocusLost
+    private void jTextField4FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField4FocusLost
         // TODO add your handling code here:
         jTextField4.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField4FocusLost
+    }// GEN-LAST:event_jTextField4FocusLost
 
-    private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusGained
+    private void jTextField5FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField5FocusGained
         // TODO add your handling code here:
         Color clr = new Color(51, 161, 222);
         jTextField5.setBorder(new LineBorder(clr, 2));
-    }//GEN-LAST:event_jTextField5FocusGained
+    }// GEN-LAST:event_jTextField5FocusGained
 
-    private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField5FocusLost
+    private void jTextField5FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField5FocusLost
         // TODO add your handling code here:
         jTextField5.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField5FocusLost
+    }// GEN-LAST:event_jTextField5FocusLost
 
-    private void jTextField6FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField6FocusGained
+    private void jTextField6FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField6FocusGained
         // TODO add your handling code here:
-         Color clr = new Color(51, 161, 222);
+        Color clr = new Color(51, 161, 222);
         jTextField6.setBorder(new LineBorder(clr, 2));
-    }//GEN-LAST:event_jTextField6FocusGained
+    }// GEN-LAST:event_jTextField6FocusGained
 
-    private void jTextField6FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField6FocusLost
+    private void jTextField6FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField6FocusLost
         // TODO add your handling code here:
         jTextField6.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField6FocusLost
+    }// GEN-LAST:event_jTextField6FocusLost
 
-    private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusGained
+    private void jTextField7FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField7FocusGained
         // TODO add your handling code here:
         Color clr = new Color(51, 161, 222);
         jTextField7.setBorder(new LineBorder(clr, 2));
-    }//GEN-LAST:event_jTextField7FocusGained
+    }// GEN-LAST:event_jTextField7FocusGained
 
-    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField7FocusLost
+    private void jTextField7FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField7FocusLost
         // TODO add your handling code here:
         jTextField7.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField7FocusLost
+    }// GEN-LAST:event_jTextField7FocusLost
 
-    private void jTextField11FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField11FocusGained
+    private void jTextField11FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField11FocusGained
         // TODO add your handling code here:
         Color clr = new Color(51, 161, 222);
         jTextField11.setBorder(new LineBorder(clr, 2));
-    }//GEN-LAST:event_jTextField11FocusGained
+    }// GEN-LAST:event_jTextField11FocusGained
 
-    private void jTextField11FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField11FocusLost
+    private void jTextField11FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField11FocusLost
         // TODO add your handling code here:
         jTextField11.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField11FocusLost
+    }// GEN-LAST:event_jTextField11FocusLost
 
-    private void jTextField10FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField10FocusGained
+    private void jTextField10FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField10FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField10.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField10FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField10.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField10FocusGained
 
-    private void jTextField10FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField10FocusLost
+    private void jTextField10FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField10FocusLost
         // TODO add your handling code here:
         jTextField10.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField10FocusLost
+    }// GEN-LAST:event_jTextField10FocusLost
 
-    private void jTextField12FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField12FocusGained
+    private void jTextField12FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField12FocusGained
         // TODO add your handling code here:
-         Color clr = new Color(51,161,222);
-        jTextField12.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField12FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField12.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField12FocusGained
 
-    private void jTextField12FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField12FocusLost
+    private void jTextField12FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField12FocusLost
         // TODO add your handling code here:
-         jTextField12.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField12FocusLost
+        jTextField12.setBorder(new EtchedBorder());
+    }// GEN-LAST:event_jTextField12FocusLost
 
-    private void jTextField13FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField13FocusGained
+    private void jTextField13FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField13FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField13.setBorder(new LineBorder(clr,2));
-                                        
-    }//GEN-LAST:event_jTextField13FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField13.setBorder(new LineBorder(clr, 2));
 
-    private void jTextField13FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField13FocusLost
+    }// GEN-LAST:event_jTextField13FocusGained
+
+    private void jTextField13FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField13FocusLost
         // TODO add your handling code here:
         jTextField13.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField13FocusLost
+    }// GEN-LAST:event_jTextField13FocusLost
 
-    private void jTextField14FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField14FocusGained
+    private void jTextField14FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField14FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField14.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField14FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField14.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField14FocusGained
 
-    private void jTextField14FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField14FocusLost
+    private void jTextField14FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField14FocusLost
         // TODO add your handling code here:
         jTextField14.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField14FocusLost
+    }// GEN-LAST:event_jTextField14FocusLost
 
-    private void jTextField18FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField18FocusGained
+    private void jTextField18FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField18FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField18.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField18FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField18.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField18FocusGained
 
-    private void jTextField18FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField18FocusLost
+    private void jTextField18FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField18FocusLost
         // TODO add your handling code here:
-         jTextField18.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField18FocusLost
+        jTextField18.setBorder(new EtchedBorder());
+    }// GEN-LAST:event_jTextField18FocusLost
 
-    private void jTextField19FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField19FocusGained
+    private void jTextField19FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField19FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField19.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField19FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField19.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField19FocusGained
 
-    private void jTextField19FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField19FocusLost
+    private void jTextField19FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField19FocusLost
         // TODO add your handling code here:
         jTextField19.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField19FocusLost
+    }// GEN-LAST:event_jTextField19FocusLost
 
-    private void jTextField17FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField17FocusGained
+    private void jTextField17FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField17FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField17.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField17FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField17.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField17FocusGained
 
-    private void jTextField17FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField17FocusLost
+    private void jTextField17FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField17FocusLost
         // TODO add your handling code here:
         jTextField17.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField17FocusLost
+    }// GEN-LAST:event_jTextField17FocusLost
 
-    private void jTextField20FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField20FocusGained
+    private void jTextField20FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField20FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField20.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField20FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField20.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField20FocusGained
 
-    private void jTextField20FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField20FocusLost
+    private void jTextField20FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField20FocusLost
         // TODO add your handling code here:
         jTextField20.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField20FocusLost
+    }// GEN-LAST:event_jTextField20FocusLost
 
-    private void jTextField21FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField21FocusGained
+    private void jTextField21FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField21FocusGained
         // TODO add your handling code here:
-        Color clr = new Color(51,161,222);
-        jTextField21.setBorder(new LineBorder(clr,2));
-    }//GEN-LAST:event_jTextField21FocusGained
+        Color clr = new Color(51, 161, 222);
+        jTextField21.setBorder(new LineBorder(clr, 2));
+    }// GEN-LAST:event_jTextField21FocusGained
 
-    private void jTextField21FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextField21FocusLost
+    private void jTextField21FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTextField21FocusLost
         // TODO add your handling code here:
-         jTextField21.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTextField21FocusLost
+        jTextField21.setBorder(new EtchedBorder());
+    }// GEN-LAST:event_jTextField21FocusLost
 
-    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem8ActionPerformed
         // TODO add your handling code here:
 
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        AddClientFrame af=new AddClientFrame();
+        AddClientFrame af = new AddClientFrame();
         af.setVisible(true);
         af.setSize(d);
-    }//GEN-LAST:event_jMenuItem8ActionPerformed
+    }// GEN-LAST:event_jMenuItem8ActionPerformed
 
-    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem10ActionPerformed
         // TODO add your handling code here:
 
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        SearchRegisterPartyFrame sf=new SearchRegisterPartyFrame();
+        SearchRegisterPartyFrame sf = new SearchRegisterPartyFrame();
         sf.setVisible(true);
         sf.setSize(d);
-    }//GEN-LAST:event_jMenuItem10ActionPerformed
+    }// GEN-LAST:event_jMenuItem10ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem1ActionPerformed
         // TODO add your handling code here:
 
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        AddItemFrame lf=new AddItemFrame();
+        AddItemFrame lf = new AddItemFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }// GEN-LAST:event_jMenuItem1ActionPerformed
 
-    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
+    private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem15ActionPerformed
         // TODO add your handling code here:
 
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        SearchItemFrame lf=new SearchItemFrame();
+        SearchItemFrame lf = new SearchItemFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem15ActionPerformed
+    }// GEN-LAST:event_jMenuItem15ActionPerformed
 
-    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
+    private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem9ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
-        SearchStockFrame lf=new SearchStockFrame();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        SearchStockFrame lf = new SearchStockFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem9ActionPerformed
+    }// GEN-LAST:event_jMenuItem9ActionPerformed
 
-    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
+    private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem11ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        NewPurchaseFrame nf=new NewPurchaseFrame();
+        NewPurchaseFrame nf = new NewPurchaseFrame();
         nf.setVisible(true);
         nf.setSize(d);
-    }//GEN-LAST:event_jMenuItem11ActionPerformed
+    }// GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
+    private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem16ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        SearchPurchaseFrame lf=new SearchPurchaseFrame();
+        SearchPurchaseFrame lf = new SearchPurchaseFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem16ActionPerformed
+    }// GEN-LAST:event_jMenuItem16ActionPerformed
 
-    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem17ActionPerformed
+    private void jMenuItem17ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem17ActionPerformed
         // TODO add your handling code here:
         this.dispose();
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
@@ -2385,56 +2326,61 @@ String result1=new IFSCValidator().isValidIFSC(ifsccode);
         PurchasePaymentFrame lf = new PurchasePaymentFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem17ActionPerformed
+    }// GEN-LAST:event_jMenuItem17ActionPerformed
 
-    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem18ActionPerformed
+    private void jMenuItem18ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem18ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        AdvancePaymentFrame lf=new AdvancePaymentFrame();
+        AdvancePaymentFrame lf = new AdvancePaymentFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem18ActionPerformed
+    }// GEN-LAST:event_jMenuItem18ActionPerformed
 
-    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
+    private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem19ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        NewSaleFrame lf=new NewSaleFrame();
+        NewSaleFrame lf = new NewSaleFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem19ActionPerformed
+    }// GEN-LAST:event_jMenuItem19ActionPerformed
 
-    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem20ActionPerformed
+    private void jMenuItem20ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem20ActionPerformed
         // TODO add your handling code here:
         this.dispose();
-        Dimension d=Toolkit.getDefaultToolkit().getScreenSize();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
 
-        SearchSaleFrame lf=new SearchSaleFrame();
+        SearchSaleFrame lf = new SearchSaleFrame();
         lf.setVisible(true);
         lf.setSize(d);
-    }//GEN-LAST:event_jMenuItem20ActionPerformed
+    }// GEN-LAST:event_jMenuItem20ActionPerformed
 
-    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
+    private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jMenuItem12ActionPerformed
 
-        new ManageProfileDBOperation().insertStaffLoginDetails(LoginFrame.uname, LoginFrame.logindatetime, logoutdatetime);
+        new ManageProfileDBOperation().insertStaffLoginDetails(LoginFrame.uname, LoginFrame.logindatetime,
+                logoutdatetime);
         this.dispose();
         Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
         LoginFrame af = new LoginFrame();
         af.setVisible(true);
-        af.setSize(d);        // TODO add your handling code here:
-    }//GEN-LAST:event_jMenuItem12ActionPerformed
+        af.setSize(d); // TODO add your handling code here:
+    }// GEN-LAST:event_jMenuItem12ActionPerformed
 
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -2444,78 +2390,18 @@ String result1=new IFSCValidator().isValidIFSC(ifsccode);
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EditClientFrame.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
