@@ -1,10 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package CeoGUI;
-
 
 import ManagerGUI.*;
 import date.CurrentDate;
@@ -27,10 +21,7 @@ import javax.swing.border.Border;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.LineBorder;
 
-/**
- *
- * @author welcome
- */
+
 public class CEOEditFrame extends javax.swing.JFrame {
     
     

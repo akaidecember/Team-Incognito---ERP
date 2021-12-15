@@ -1,30 +1,23 @@
 
 package ManagerGUI;
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
 import java.io.*;
 import java.util.*;
 
+public class CurrentDateTime {
+    public String getDateTime() {
 
+        Calendar cal = Calendar.getInstance();
 
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
 
- public class CurrentDateTime
- {
-public String getDateTime()
-{
+        String p = dateFormat.format(cal.getTime());
 
- Calendar cal = Calendar.getInstance();
-  					
- DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy hh:mm:ss a");
+        return p;
 
-
- String p=dateFormat.format(cal.getTime());
-
-// System.out.println("time is "+p);
-  				
-return p;
+    }
 
 }
-
- }

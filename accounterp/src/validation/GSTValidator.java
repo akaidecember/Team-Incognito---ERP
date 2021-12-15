@@ -1,23 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package validation;
 
-
-
-/**
- *
- * @author Innovatus Tech
- */
-public class GSTValidator
-{
-public static final String GSTINFORMAT_REGEX = "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9a-zA-Z]{1}";
+public class GSTValidator {
+	public static final String GSTINFORMAT_REGEX = "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA-Z]{1}[1-9A-Za-z]{1}[Z]{1}[0-9a-zA-Z]{1}";
 	public static final String GSTN_CODEPOINT_CHARS = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-        
-        /**
+
+	/**
 	 * Method to check if a GSTIN is valid. Checks the GSTIN format and the
 	 * check digit is valid for the passed input GSTIN
 	 * 
@@ -25,7 +13,7 @@ public static final String GSTINFORMAT_REGEX = "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA
 	 * @return boolean - valid or not
 	 * @throws Exception
 	 */
-	public  boolean validGSTIN(String gstin) throws Exception {
+	public boolean validGSTIN(String gstin) throws Exception {
 		boolean isValidFormat = false;
 		if (checkPattern(gstin, GSTINFORMAT_REGEX)) {
 			isValidFormat = verifyCheckDigit(gstin);
@@ -41,7 +29,7 @@ public static final String GSTINFORMAT_REGEX = "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA
 	 * @return
 	 * @throws Exception
 	 */
-	public  boolean verifyCheckDigit(String gstinWCheckDigit) throws Exception {
+	public boolean verifyCheckDigit(String gstinWCheckDigit) throws Exception {
 		Boolean isCDValid = false;
 		String newGstninWCheckDigit = getGSTINWithCheckDigit(
 				gstinWCheckDigit.substring(0, gstinWCheckDigit.length() - 1));
@@ -59,7 +47,7 @@ public static final String GSTINFORMAT_REGEX = "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA
 	 * @param regxpatrn
 	 * @return boolean
 	 */
-	public  boolean checkPattern(String inputval, String regxpatrn) {
+	public boolean checkPattern(String inputval, String regxpatrn) {
 		boolean result = false;
 		if ((inputval.trim()).matches(regxpatrn)) {
 			result = true;
@@ -74,7 +62,7 @@ public static final String GSTINFORMAT_REGEX = "[0-9]{2}[a-zA-Z]{5}[0-9]{4}[a-zA
 	 * @return : GSTIN with check digit
 	 * @throws Exception
 	 */
-	public  String getGSTINWithCheckDigit(String gstinWOCheckDigit) throws Exception {
+	public String getGSTINWithCheckDigit(String gstinWOCheckDigit) throws Exception {
 		int factor = 2;
 		int sum = 0;
 		int checkCodePoint = 0;

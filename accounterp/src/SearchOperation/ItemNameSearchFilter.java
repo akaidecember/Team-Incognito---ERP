@@ -1,13 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package SearchOperation;
 
 import TableOperation.InsertPartyNameToTable;
-
 
 import dbdriver.DBDriver;
 import dboperation.PurchaseDBOperation;
@@ -29,87 +23,67 @@ import javax.swing.table.TableRowSorter;
 import staffGUI.AddNewItemFrame;
 import staffGUI.NewPurchaseFrame;
 
-
 public class ItemNameSearchFilter extends javax.swing.JFrame {
-    
+
     public static int row, col;
-    
-   
-    
-   public static String existedItem=null;
-     
+
+    public static String existedItem = null;
 
     public ItemNameSearchFilter() {
         initComponents();
-        this.insertData();   
+        this.insertData();
 
     }
-    
-    private ArrayList getiTemNamesInfo()
-    {
-        ArrayList info=new ArrayList();
-        try
-           {
-             Statement st= new DBDriver().getStatment();
-             String query="Select *from iteminfo";
-              ResultSet rs1=st.executeQuery(query);
-         
-             while(rs1.next())
-            {
 
-             String name=rs1.getString(2);
-             String hsn=rs1.getString(6);
-             ArrayList temp=new ArrayList();
-             temp.add(name);
-             temp.add(hsn);
-            
-             //names.toLowerCase();
-             info.add(temp);
-             
-             
+    private ArrayList getiTemNamesInfo() {
+        ArrayList info = new ArrayList();
+        try {
+            Statement st = new DBDriver().getStatment();
+            String query = "Select *from iteminfo";
+            ResultSet rs1 = st.executeQuery(query);
+
+            while (rs1.next()) {
+
+                String name = rs1.getString(2);
+                String hsn = rs1.getString(6);
+                ArrayList temp = new ArrayList();
+                temp.add(name);
+                temp.add(hsn);
+
+                info.add(temp);
+
             }
-             
-                  st.close();
-              }
-              
-           catch (SQLException e)
-           {
-               System.out.println("Exeption in ItemNameSearchFilter Class and method is getiTemNames () "+e);
-           }
-       
-        return info;
-        
-    }
-    
-    private void insertData()
-    {
-        ArrayList iteminfo=getiTemNamesInfo();
-        
-        
-         int columncount = jTable1.getColumnCount();
-        InsertPartyNameToTable it = new InsertPartyNameToTable();
-        it.getDataInserted(jTable1, columncount, iteminfo,30);
-      
-    }
-    
-      
-   
 
-    private void searchFilter(String searchTerm)
-    {
-       
-       
-      
+            st.close();
+        }
+
+        catch (SQLException e) {
+            System.out.println("Exeption in ItemNameSearchFilter Class and method is getiTemNames () " + e);
+        }
+
+        return info;
+
+    }
+
+    private void insertData() {
+        ArrayList iteminfo = getiTemNamesInfo();
+
+        int columncount = jTable1.getColumnCount();
+        InsertPartyNameToTable it = new InsertPartyNameToTable();
+        it.getDataInserted(jTable1, columncount, iteminfo, 30);
+
+    }
+
+    private void searchFilter(String searchTerm) {
 
         TableRowSorter<TableModel> sorter = new TableRowSorter<TableModel>(((DefaultTableModel) jTable1.getModel()));
         sorter.setRowFilter(RowFilter.regexFilter("(?i)" + searchTerm));
         jTable1.setRowSorter(sorter);
 
-        
-
     }
-   
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+
+    // <editor-fold defaultstate="collapsed" desc="Generated
+    // Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
@@ -202,19 +176,18 @@ public class ItemNameSearchFilter extends javax.swing.JFrame {
 
         jTable1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
+                new Object[][] {
 
-            },
-            new String [] {
-                "Item Name", "HSN"
-            }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                false, false
+                },
+                new String[] {
+                        "Item Name", "HSN"
+                }) {
+            boolean[] canEdit = new boolean[] {
+                    false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
+                return canEdit[columnIndex];
             }
         });
         jTable1.getTableHeader().setReorderingAllowed(false);
@@ -222,6 +195,7 @@ public class ItemNameSearchFilter extends javax.swing.JFrame {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 jTable1FocusGained(evt);
             }
+
             public void focusLost(java.awt.event.FocusEvent evt) {
                 jTable1FocusLost(evt);
             }
@@ -246,201 +220,165 @@ public class ItemNameSearchFilter extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField1MouseClicked
+    private void jTextField1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTextField1MouseClicked
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1MouseClicked
+    }// GEN-LAST:event_jTextField1MouseClicked
 
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
+    }// GEN-LAST:event_jTextField1ActionPerformed
 
-    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTextField1KeyReleased
         // TODO add your handling code here:
-        //  String search="";
+        // String search="";
         searchFilter(jTextField1.getText());
         // String search=jTextField1.getText();
-    }//GEN-LAST:event_jTextField1KeyReleased
+    }// GEN-LAST:event_jTextField1KeyReleased
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        //   TODO add your handling code here:
-              NewPurchaseFrame.itemselectionframevalue=0;
-           this.dispose();
-            Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
-            AddNewItemFrame l = new AddNewItemFrame();
-            l.setSize(d);
-            l.revalidate();
-            l.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton1KeyPressed
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-               NewPurchaseFrame.itemselectionframevalue=0;
-             this.dispose();
+        NewPurchaseFrame.itemselectionframevalue = 0;
+        this.dispose();
+        Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
+        AddNewItemFrame l = new AddNewItemFrame();
+        l.setSize(d);
+        l.revalidate();
+        l.setVisible(true);
+    }// GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton1KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            NewPurchaseFrame.itemselectionframevalue = 0;
+            this.dispose();
             Dimension d = Toolkit.getDefaultToolkit().getScreenSize();
             AddNewItemFrame l = new AddNewItemFrame();
             l.setSize(d);
             l.revalidate();
             l.setVisible(true);
         }
-    }//GEN-LAST:event_jButton1KeyPressed
+    }// GEN-LAST:event_jButton1KeyPressed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-           String itemname=jTextField1.getText();
-           
-        //  System.out.println("Selected item is  "+itemname);
-           
-           
-           if(!itemname.isEmpty())
-           {
-           if(existedItem==null)
-           {
+        String itemname = jTextField1.getText();
 
-           if(!NewPurchaseFrame.uniqueitems.contains(itemname))
-           {
-               NewPurchaseFrame.uniqueitems.add(itemname);
-               NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
-               NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
-               // NewPurchaseFrame.currentabledata.add(new PurchaseDBOperation().getItemMoreInfo(itemname) );
-               NewPurchaseFrame.itemselectionframevalue = 0;
-               this.dispose();
-               
-           }
-           else
-           {
-               String msg="Item : "+itemname+" Already Existed in the Table";
-               JOptionPane.showMessageDialog(null, msg);
-           }
-           }
-           else
-           {
-               NewPurchaseFrame.uniqueitems.remove(existedItem);
-               NewPurchaseFrame.uniqueitems.add(itemname);
-               NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
+        if (!itemname.isEmpty()) {
+            if (existedItem == null) {
 
-               NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
-               //  NewPurchaseFrame.currentabledata.add(new PurchaseDBOperation().getItemMoreInfo(itemname) );
+                if (!NewPurchaseFrame.uniqueitems.contains(itemname)) {
+                    NewPurchaseFrame.uniqueitems.add(itemname);
+                    NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
+                    NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
+                    NewPurchaseFrame.itemselectionframevalue = 0;
+                    this.dispose();
 
-               NewPurchaseFrame.itemselectionframevalue = 0;
+                } else {
+                    String msg = "Item : " + itemname + " Already Existed in the Table";
+                    JOptionPane.showMessageDialog(null, msg);
+                }
+            } else {
+                NewPurchaseFrame.uniqueitems.remove(existedItem);
+                NewPurchaseFrame.uniqueitems.add(itemname);
+                NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
 
-               this.dispose();
-               
-               
-               
-           }
-        
-           }
-           else
-           {
-               JOptionPane.showMessageDialog(null, "Please Select a Item");
-           }
-           
-          
-         
-    }//GEN-LAST:event_jButton2ActionPerformed
+                NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
 
-    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jButton2KeyPressed
-        // TODO add your handling code here:
-         if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-          String itemname=jTextField1.getText();
-           
-        //  System.out.println("Selected item is  "+itemname);
-           
-           
-           if(!itemname.isEmpty())
-           {
-           if(existedItem==null)
-           {
+                NewPurchaseFrame.itemselectionframevalue = 0;
 
-           if(!NewPurchaseFrame.uniqueitems.contains(itemname))
-           {
-               NewPurchaseFrame.uniqueitems.add(itemname);
-               NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
-               NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
-               // NewPurchaseFrame.currentabledata.add(new PurchaseDBOperation().getItemMoreInfo(itemname) );
-               NewPurchaseFrame.itemselectionframevalue = 0;
-               this.dispose();
-               
-           }
-           else
-           {
-               String msg="Item : "+itemname+" Already Existed in the Table";
-               JOptionPane.showMessageDialog(null, msg);
-           }
-           }
-           else
-           {
-               NewPurchaseFrame.uniqueitems.remove(existedItem);
-               NewPurchaseFrame.uniqueitems.add(itemname);
-               NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
+                this.dispose();
 
-               NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
-               //  NewPurchaseFrame.currentabledata.add(new PurchaseDBOperation().getItemMoreInfo(itemname) );
+            }
 
-               NewPurchaseFrame.itemselectionframevalue = 0;
-
-               this.dispose();
-               
-               
-               
-           }
-        
-           }
-           else
-           {
-               JOptionPane.showMessageDialog(null, "Please Select a Item");
-           }
-           
+        } else {
+            JOptionPane.showMessageDialog(null, "Please Select a Item");
         }
-    }//GEN-LAST:event_jButton2KeyPressed
 
-    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
+    }// GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton2KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jButton2KeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            String itemname = jTextField1.getText();
+
+            // System.out.println("Selected item is "+itemname);
+
+            if (!itemname.isEmpty()) {
+                if (existedItem == null) {
+
+                    if (!NewPurchaseFrame.uniqueitems.contains(itemname)) {
+                        NewPurchaseFrame.uniqueitems.add(itemname);
+                        NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
+                        NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
+                        NewPurchaseFrame.itemselectionframevalue = 0;
+                        this.dispose();
+
+                    } else {
+                        String msg = "Item : " + itemname + " Already Existed in the Table";
+                        JOptionPane.showMessageDialog(null, msg);
+                    }
+                } else {
+                    NewPurchaseFrame.uniqueitems.remove(existedItem);
+                    NewPurchaseFrame.uniqueitems.add(itemname);
+                    NewPurchaseFrame.jTable1.setValueAt(itemname, row, col);
+
+                    NewPurchaseFrame.iteminfo = new PurchaseDBOperation().getItemInfo(itemname);
+
+                    NewPurchaseFrame.itemselectionframevalue = 0;
+
+                    this.dispose();
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Please Select a Item");
+            }
+
+        }
+    }// GEN-LAST:event_jButton2KeyPressed
+
+    private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jLabel2MouseClicked
         // TODO add your handling code here:
 
-        NewPurchaseFrame.itemselectionframevalue=0;
-                 this.dispose();
-    }//GEN-LAST:event_jLabel2MouseClicked
+        NewPurchaseFrame.itemselectionframevalue = 0;
+        this.dispose();
+    }// GEN-LAST:event_jLabel2MouseClicked
 
-    private void jLabel2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jLabel2KeyPressed
+    private void jLabel2KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jLabel2KeyPressed
         // TODO add your handling code here:
- NewPurchaseFrame.itemselectionframevalue=0;
-                 this.dispose();
-    }//GEN-LAST:event_jLabel2KeyPressed
+        NewPurchaseFrame.itemselectionframevalue = 0;
+        this.dispose();
+    }// GEN-LAST:event_jLabel2KeyPressed
 
-    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusGained
+    private void jTable1FocusGained(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTable1FocusGained
         // TODO add your handling code here:
-//        Color clr = new Color(51,161,222);
-//        jTable1.setBorder(new LineBorder(clr,1));
-    }//GEN-LAST:event_jTable1FocusGained
+        // Color clr = new Color(51,161,222);
+        // jTable1.setBorder(new LineBorder(clr,1));
+    }// GEN-LAST:event_jTable1FocusGained
 
-    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTable1FocusLost
+    private void jTable1FocusLost(java.awt.event.FocusEvent evt) {// GEN-FIRST:event_jTable1FocusLost
         // TODO add your handling code here:
-//        jTable1.setBorder(new EtchedBorder());
-    }//GEN-LAST:event_jTable1FocusLost
+        // jTable1.setBorder(new EtchedBorder());
+    }// GEN-LAST:event_jTable1FocusLost
 
-    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {// GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        int index1=jTable1.getSelectedRow();
+        int index1 = jTable1.getSelectedRow();
 
-        String code=(String) jTable1.getValueAt(index1, 0);
+        String code = (String) jTable1.getValueAt(index1, 0);
         jTextField1.setText(code);
-    }//GEN-LAST:event_jTable1MouseClicked
+    }// GEN-LAST:event_jTable1MouseClicked
 
-    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTable1KeyPressed
+    private void jTable1KeyPressed(java.awt.event.KeyEvent evt) {// GEN-FIRST:event_jTable1KeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER)
-        {
-            int index1=jTable1.getSelectedRow();
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            int index1 = jTable1.getSelectedRow();
 
-            String code=(String) jTable1.getValueAt(index1, 0);
+            String code = (String) jTable1.getValueAt(index1, 0);
             jTextField1.setText(code);
 
         }
-        if(evt.getKeyCode()==KeyEvent.VK_TAB)
-        {
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             if (evt.getModifiers() > 0) {
                 jTable1.transferFocusBackward();
             } else {
@@ -448,52 +386,47 @@ public class ItemNameSearchFilter extends javax.swing.JFrame {
             }
             evt.consume();
         }
-    }//GEN-LAST:event_jTable1KeyPressed
+    }// GEN-LAST:event_jTable1KeyPressed
 
-     public int getEmptyRows(JTable table)
-    {
-    int emptyRows = 0;
-    rowSearch: for (int row = 0; row < table.getRowCount(); row++)
-    { 
-        for (int col = 0; col < table.getColumnCount(); col++) 
-        { 
-            if (table.getValueAt(row, col) != null) 
-            { 
-                continue rowSearch; 
+    public int getEmptyRows(JTable table) {
+        int emptyRows = 0;
+        rowSearch: for (int row = 0; row < table.getRowCount(); row++) {
+            for (int col = 0; col < table.getColumnCount(); col++) {
+                if (table.getValueAt(row, col) != null) {
+                    continue rowSearch;
+                }
             }
+            emptyRows++;
         }
-        emptyRows++; 
+        return emptyRows;
     }
-    return emptyRows;
-}
-     
-     
-     public int getPosition(ArrayList mas,String str)
-    {
-        
-       int pos=-1;
-       
-        for (int i = 0; i < mas.size(); i++)
-        {
-         String ele=(String)mas.get(i);
-         if(ele.equals(str))
-         {
-             pos=i;
-             break;
-         }
+
+    public int getPosition(ArrayList mas, String str) {
+
+        int pos = -1;
+
+        for (int i = 0; i < mas.size(); i++) {
+            String ele = (String) mas.get(i);
+            if (ele.equals(str)) {
+                pos = i;
+                break;
+            }
         }
         return pos;
     }
-    
- 
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        // <editor-fold defaultstate="collapsed" desc=" Look and feel setting code
+        // (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the default
+         * look and feel.
+         * For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -503,16 +436,20 @@ public class ItemNameSearchFilter extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ItemNameSearchFilter.class.getName()).log(java.util.logging.Level.SEVERE,
+                    null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
+        // </editor-fold>
+        // </editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

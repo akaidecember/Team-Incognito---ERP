@@ -1,21 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package CeoGUI;
+
 import java.applet.*;
 import java.awt.*;
 import java.util.ArrayList;
-
-
 
 public class PurchaseChartApplet extends Applet
 {
     public static ArrayList mas=new ArrayList();
     
     public static String message="";
-    
     
 	int n;
 	String label[];
@@ -58,12 +51,10 @@ public class PurchaseChartApplet extends Applet
                 System.out.println("val: "+val);
                   val=(val*max)/ big;
                   
-                    
                 value[i]=val;
                 
                 }
                 
-      
 
 	}
 
@@ -79,19 +70,15 @@ public class PurchaseChartApplet extends Applet
 			g.drawString(label[i], 20, i * 50 + 30);
 			g.setColor(Color.RED);
 			g.fillRect(200, i * 50 + 10, value[i], 40);
-                        
-                       
                        
 			g.drawString(String.valueOf(orgvalue[i]) + "", 200+value[i]+50, i * 50 + 35);
                         sx=200;
                         sy=i * 50 + 10;
                         
-                    //    System.out.println("sy "+sy);
 		}
                 
                 sy=sy+100;
 
-		
 		g.setColor(Color.darkGray);
 
 		font = new Font("Arial",Font.BOLD,20);
